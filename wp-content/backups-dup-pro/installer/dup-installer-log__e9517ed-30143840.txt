@@ -1,0 +1,1495 @@
+********************************************************************************
+* DUPLICATOR-PRO: Install-Log
+* STEP-0 START @ 06:25:48
+* NOTICE: Do NOT post to public sites or forums!!
+********************************************************************************
+PACKAGE INFO________ ORIGINAL SERVER                        |CURRENT SERVER
+OS__________________: WINNT                                 |Linux
+PHP VERSION_________: 7.4.11                                |7.4.33
+********************************************************************************
+CURRENT SERVER INFO
+PHP_________________: 7.4.33 | SAPI: litespeed
+PHP MEMORY__________: 4294967296 | SUHOSIN: disabled
+ARCHITECTURE________: 64-bit
+SERVER______________: Apache
+DOC ROOT____________: "/home/nhbomqlz/public_html"
+REQUEST URL_________: "https://bommart.vn"
+********************************************************************************
+OVERWRITE PARAMS
+ *** FROM PACKAGE
+PARAM SET KEY[cpnl-dbaction]
+********************************************************************************
+GET DUPLICATOR VERSION ON CURRENT DATABASE FAILED. OVERWRITE VERSION NOT FOUND
+MAINTENANCE MODE DISABLE
+INSTALLER INFO
+
+TEMPLATE____________: "base"
+VALIDATE ON START___: "normal"
+PATH_NEW____________: "/home/nhbomqlz/public_html"
+URL_NEW_____________: "https://bommart.vn"
+********************************************************************************
+ARCHIVE INFO
+
+ARCHIVE NAME________: "/home/nhbomqlz/public_html/20231130_mauwebsieuthimevabe_[HASH]_20231130143840_archive.zip"
+ARCHIVE SIZE________: 146.14MB
+CREATED_____________: 2023-11-30 14:38:40
+WP VERSION__________: 6.0.6
+DUP VERSION_________: 4.5.0
+LICENSE_____________: unlicensed
+DB VERSION__________: 10.4.14
+DB FILE SIZE________: 9.7MB
+DB TABLES___________: 57
+DB ROWS_____________: 10776
+URL HOME____________: http://localhost/mevabe1
+URL CORE____________: http://localhost/mevabe1
+URL CONTENT_________: http://localhost/mevabe1/wp-content
+URL UPLOAD__________: http://localhost/mevabe1/wp-content/uploads
+URL PLUGINS_________: http://localhost/mevabe1/wp-content/plugins
+URL MU PLUGINS______: http://localhost/mevabe1/wp-content/mu-plugins
+URL THEMES__________: http://localhost/mevabe1/wp-content/themes
+PATH HOME___________: C:/xampp/htdocs/mevabe1
+PATH ABS____________: C:/xampp/htdocs/mevabe1
+PATH WPCONFIG_______: C:/xampp/htdocs/mevabe1
+PATH WPCONTENT______: C:/xampp/htdocs/mevabe1/wp-content
+PATH UPLOADS________: C:/xampp/htdocs/mevabe1/wp-content/uploads
+PATH PLUGINS________: C:/xampp/htdocs/mevabe1/wp-content/plugins
+PATH MUPLUGINS______: C:/xampp/htdocs/mevabe1/wp-content/mu-plugins
+PATH THEMES_________: C:/xampp/htdocs/mevabe1/wp-content/themes
+
+SUBSITES
+SUBSITE [ID:   1] "localhost/mevabe1/"
+
+PLUGINS
+PLUGIN [SLUG:classic-editor/classic-editor.php                 ][ON:true ]  Classic Editor
+PLUGIN [SLUG:contact-form-7/wp-contact-form-7.php              ][ON:true ]  Contact Form 7
+PLUGIN [SLUG:danh-muc-con/danh-muc-con.php                     ][ON:true ]  Danh mục con
+PLUGIN [SLUG:devvn-woocommerce-reviews/devvn-woocommerce-reviews.php][ON:true ]  DevVN Woocommerce Reviews
+PLUGIN [SLUG:duplicator-pro/duplicator-pro.php                 ][ON:true ]  Duplicator Pro
+PLUGIN [SLUG:font-awesome/index.php                            ][ON:true ]  Font Awesome
+PLUGIN [SLUG:woocommerce/woocommerce.php                       ][ON:true ]  WooCommerce
+PLUGIN [SLUG:wordpress-seo/wp-seo.php                          ][ON:true ]  Yoast SEO
+
+********************************************************************************
+SECURE CHECK -> GO TO SECURE PAGE
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/ctrls/ctrl.base.php:231][DELTA:   0.09876]  MESSAGE:END RENDER PAGE
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [pwdcheck] START
+AJAX ACTION [pwdcheck] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+STEP ACTION: "initialized"
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/ctrls/ctrl.base.php:231][DELTA:   0.06657]  MESSAGE:END RENDER PAGE
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [sparam_s1] START
+GET DUPLICATOR VERSION ON CURRENT DATABASE FAILED. OVERWRITE VERSION NOT FOUND
+AJAX ACTION [sparam_s1] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+STEP ACTION: "on-validate"
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/ctrls/ctrl.base.php:231][DELTA:   0.05393]  MESSAGE:END RENDER PAGE
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [validate] START
+START TEST "Archive Check" [CLASS: DUPX_Validation_test_archive_check]
+LOG-TIME[DELTA:   0.00006]  MESSAGE:TEST "Archive Check" RESULT: passed
+
+START TEST "Duplicator importer version" [CLASS: DUPX_Validation_test_importer_version]
+LOG-TIME[DELTA:   0.00003]  MESSAGE:TEST "Duplicator importer version" RESULT: skip
+
+START TEST "Overwrite Install" [CLASS: DUPX_Validation_test_owrinstall]
+LOG-TIME[DELTA:   0.00004]  MESSAGE:TEST "Overwrite Install" RESULT: soft warning
+
+START TEST "Recovery Point" [CLASS: DUPX_Validation_test_recovery]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Recovery Point" RESULT: skip
+
+START TEST "Package is Importable" [CLASS: DUPX_Validation_test_importable]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Package is Importable" RESULT: skip
+
+START TEST "REST API test" [CLASS: DUPX_Validation_test_rest_api]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "REST API test" RESULT: skip
+
+START TEST "Manual extraction detected" [CLASS: DUPX_Validation_test_manual_extraction]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Manual extraction detected" RESULT: good
+
+START TEST "Database Only" [CLASS: DUPX_Validation_test_dbonly_iswordpress]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Database Only" RESULT: skip
+
+START TEST "Package Age" [CLASS: DUPX_Validation_test_package_age]
+LOG-TIME[DELTA:   0.00011]  MESSAGE:TEST "Package Age" RESULT: soft warning
+
+START TEST "Replace PATHs in database" [CLASS: DUPX_Validation_test_replace_paths]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Replace PATHs in database" RESULT: skip
+
+START TEST "Managed hosting supported" [CLASS: DUPX_Validation_test_managed_supported]
+LOG-TIME[DELTA:   0.00005]  MESSAGE:TEST "Managed hosting supported" RESULT: skip
+
+START TEST "Siteground" [CLASS: DUPX_Validation_test_siteground]
+LOG-TIME[DELTA:   0.00038]  MESSAGE:TEST "Siteground" RESULT: skip
+
+START TEST "Subomain multisite installation in subfolder" [CLASS: DUPX_Validation_test_multisite_subfolder]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Subomain multisite installation in subfolder" RESULT: skip
+
+START TEST "Addon Sites" [CLASS: DUPX_Validation_test_addon_sites]
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+LOG-TIME[DELTA:   0.07123]  MESSAGE:TEST "Addon Sites" RESULT: good
+
+START TEST "Wordfence" [CLASS: DUPX_Validation_test_wordfence]
+LOG-TIME[DELTA:   0.00023]  MESSAGE:TEST "Wordfence" RESULT: good
+
+START TEST "Table prefix of managed hosting" [CLASS: DUPX_Validation_test_managed_tprefix]
+LOG-TIME[DELTA:   0.00007]  MESSAGE:TEST "Table prefix of managed hosting" RESULT: skip
+
+START TEST "PHP Version Mismatch" [CLASS: DUPX_Validation_test_php_version]
+LOG-TIME[DELTA:   0.00003]  MESSAGE:TEST "PHP Version Mismatch" RESULT: good
+
+START TEST "PHP Open Base" [CLASS: DUPX_Validation_test_open_basedir]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "PHP Open Base" RESULT: good
+
+START TEST "PHP Memory Limit" [CLASS: DUPX_Validation_test_memory_limit]
+LOG-TIME[DELTA:   0.00010]  MESSAGE:TEST "PHP Memory Limit" RESULT: good
+
+START TEST "PHP Extensions" [CLASS: DUPX_Validation_test_extensions]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "PHP Extensions" RESULT: good
+
+START TEST "PHP Mysqli" [CLASS: DUPX_Validation_test_mysql_connect]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "PHP Mysqli" RESULT: passed
+
+START TEST "PHP Tokenizer" [CLASS: DUPX_Validation_test_tokenizer]
+LOG-TIME[DELTA:   0.00001]  MESSAGE:TEST "PHP Tokenizer" RESULT: passed
+
+START TEST "PHP Timeout" [CLASS: DUPX_Validation_test_timeout]
+LOG-TIME[DELTA:   0.00003]  MESSAGE:TEST "PHP Timeout" RESULT: good
+
+START TEST "Disk Space" [CLASS: DUPX_Validation_test_disk_space]
+LOG-TIME[DELTA:   0.00117]  MESSAGE:TEST "Disk Space" RESULT: good
+
+START TEST "Permissions: General" [CLASS: DUPX_Validation_test_iswritable]
+LOG-TIME[DELTA:   0.02138]  MESSAGE:TEST "Permissions: General" RESULT: passed
+
+START TEST "Permissions: Configs Files " [CLASS: DUPX_Validation_test_iswritable_configs]
+LOG-TIME[DELTA:   0.00013]  MESSAGE:TEST "Permissions: Configs Files " RESULT: passed
+
+START TEST "Cpanel connection" [CLASS: DUPX_Validation_test_cpnl_connection]
+LOG-TIME[DELTA:   0.00006]  MESSAGE:TEST "Cpanel connection" RESULT: skip
+
+START TEST "Create Database User" [CLASS: DUPX_Validation_test_cpnl_new_user]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Create Database User" RESULT: skip
+
+START TEST "Host Name" [CLASS: DUPX_Validation_test_db_host_name]
+LOG-TIME[DELTA:   0.00018]  MESSAGE:TEST "Host Name" RESULT: passed
+
+START TEST "Host Connection" [CLASS: DUPX_Validation_test_db_connection]
+LOG-TIME[DELTA:   0.00382]  MESSAGE:TEST "Host Connection" RESULT: passed
+
+START TEST "Database Version" [CLASS: DUPX_Validation_test_db_version]
+LOG-TIME[DELTA:   0.00795]  MESSAGE:TEST "Database Version" RESULT: passed
+
+START TEST "Create New Database" [CLASS: DUPX_Validation_test_db_create]
+LOG-TIME[DELTA:   0.00004]  MESSAGE:TEST "Create New Database" RESULT: skip
+
+START TEST "Database Engine Support" [CLASS: DUPX_Validation_test_db_supported_engine]
+LOG-TIME[DELTA:   0.00087]  MESSAGE:TEST "Database Engine Support" RESULT: passed
+
+START TEST "Database GTID Mode" [CLASS: DUPX_Validation_test_db_gtid_mode]
+LOG-TIME[DELTA:   0.00016]  MESSAGE:TEST "Database GTID Mode" RESULT: passed
+
+START TEST "Privileges: User Visibility" [CLASS: DUPX_Validation_test_db_visibility]
+LOG-TIME[DELTA:   0.00013]  MESSAGE:TEST "Privileges: User Visibility" RESULT: passed
+
+START TEST "Manual Table Check" [CLASS: DUPX_Validation_test_db_manual_tabels_count]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Manual Table Check" RESULT: skip
+
+START TEST "Multiple WP Installs" [CLASS: DUPX_Validation_test_db_multiple_wp_installs]
+LOG-TIME[DELTA:   0.00089]  MESSAGE:TEST "Multiple WP Installs" RESULT: passed
+
+START TEST "Privileges: User Resources" [CLASS: DUPX_Validation_test_db_user_resources]
+DB QUERY [ERROR][/home/nhbomqlz/public_html/dup-installer/classes/database/class.db.php:632] MSG: SELECT command denied to user 'nhbomqlz_bommart'@'localhost' for table `mysql`.`user`
+	SQL: SELECT max_questions, max_updates, max_connections FROM mysql.user WHERE user = 'nhbomqlz_bommart' AND host = 'localhost'
+TRACE[1] CLASS___: DUPX_DB::mysqli_query      FILE: /home/nhbomqlz/public_html/dup-installer/classes/validation/class.validation.database.service.php[907]
+TRACE[2] CLASS___: DUPX_Validation_database_service->getUserResources FILE: /home/nhbomqlz/public_html/dup-installer/classes/validation/database-tests/class.validation.test.db.user.resources.php[28]
+TRACE[3] CLASS___: DUPX_Validation_test_db_user_resources->runTest FILE: /home/nhbomqlz/public_html/dup-installer/classes/validation/class.validation.abstract.item.php[46]
+TRACE[4] CLASS___: DUPX_Validation_abstract_item->test FILE: /home/nhbomqlz/public_html/dup-installer/classes/validation/class.validation.manager.php[237]
+TRACE[5] CLASS___: DUPX_Validation_manager->runTests FILE: /home/nhbomqlz/public_html/dup-installer/classes/validation/class.validation.manager.php[210]
+TRACE[6] CLASS___: DUPX_Validation_manager->getValidateData FILE: /home/nhbomqlz/public_html/dup-installer/ctrls/classes/class.ctrl.ajax.php[155]
+TRACE[7] CLASS___: DUPX_Ctrl_ajax::actions    FILE: /home/nhbomqlz/public_html/dup-installer/ctrls/classes/class.ctrl.ajax.php[91]
+TRACE[8] CLASS___: DUPX_Ctrl_ajax::controller FILE: /home/nhbomqlz/public_html/dup-installer/main.installer.php[46]
+
+LOG-TIME[DELTA:   0.00029]  MESSAGE:TEST "Privileges: User Resources" RESULT: passed
+
+START TEST "Privileges: User Table Access" [CLASS: DUPX_Validation_test_db_user_perms]
+LOG-TIME[DELTA:   0.01476]  MESSAGE:TEST "Privileges: User Table Access" RESULT: passed
+
+START TEST "Privileges: 'Show Variables' Query" [CLASS: DUPX_Validation_test_db_custom_queries]
+LOG-TIME[DELTA:   0.00156]  MESSAGE:TEST "Privileges: 'Show Variables' Query" RESULT: passed
+
+START TEST "Source Database Triggers" [CLASS: DUPX_Validation_test_db_triggers]
+LOG-TIME[DELTA:   0.00003]  MESSAGE:TEST "Source Database Triggers" RESULT: passed
+
+START TEST "Character Set and Collation Support" [CLASS: DUPX_Validation_test_db_supported_default_charset]
+LOG-TIME[DELTA:   0.00176]  MESSAGE:TEST "Character Set and Collation Support" RESULT: passed
+
+START TEST "Character Set and  Collation Capability" [CLASS: DUPX_Validation_test_db_supported_charset]
+LOG-TIME[DELTA:   0.00016]  MESSAGE:TEST "Character Set and  Collation Capability" RESULT: passed
+
+START TEST "Tables Case Sensitivity" [CLASS: DUPX_Validation_test_db_case_sensitive_tables]
+LOG-TIME[DELTA:   0.00155]  MESSAGE:TEST "Tables Case Sensitivity" RESULT: passed
+
+START TEST "Tables Flagged for Removal or Backup" [CLASS: DUPX_Validation_test_db_affected_tables]
+LOG-TIME[DELTA:   0.00072]  MESSAGE:TEST "Tables Flagged for Removal or Backup" RESULT: soft warning
+
+START TEST "Prefix too long" [CLASS: DUPX_Validation_test_db_prefix_too_long]
+LOG-TIME[DELTA:   0.00042]  MESSAGE:TEST "Prefix too long" RESULT: passed
+
+START TEST "Database cleanup" [CLASS: DUPX_Validation_test_db_cleanup]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "Database cleanup" RESULT: skip
+
+START TEST "User created cleanup" [CLASS: DUPX_Validation_test_db_user_cleanup]
+LOG-TIME[DELTA:   0.00002]  MESSAGE:TEST "User created cleanup" RESULT: skip
+
+
+CTRL PARAMS AFTER VALIDATION
+AJAX ACTION [validate] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [sparam_s1] START
+GET DUPLICATOR VERSION ON CURRENT DATABASE FAILED. OVERWRITE VERSION NOT FOUND
+AJAX ACTION [sparam_s1] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+INITIALIZE FILTERS
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+********************************************************************************
+* DUPLICATOR-PRO: Install-Log
+* STEP-1 START @ 06:28:20
+* NOTICE: Do NOT post to public sites or forums!!
+********************************************************************************
+USER INPUTS
+INSTALL TYPE________: single site
+BLOG NAME___________: "Mẫu web siêu thị mẹ và bé"
+HOME URL NEW________: "https://bommart.vn"
+SITE URL NEW________: "https://bommart.vn"
+CONTENT URL NEW_____: "https://bommart.vn/wp-content"
+UPLOAD URL NEW______: "https://bommart.vn/wp-content/uploads"
+PLUGINS URL NEW_____: "https://bommart.vn/wp-content/plugins"
+MUPLUGINS URL NEW___: "https://bommart.vn/wp-content/mu-plugins"
+HOME PATH NEW_______: "/home/nhbomqlz/public_html"
+SITE PATH NEW_______: "/home/nhbomqlz/public_html"
+CONTENT PATH NEW____: "/home/nhbomqlz/public_html/wp-content"
+UPLOAD PATH NEW_____: "/home/nhbomqlz/public_html/wp-content/uploads"
+PLUGINS PATH NEW____: "/home/nhbomqlz/public_html/wp-content/plugins"
+MUPLUGINS PATH NEW__: "/home/nhbomqlz/public_html/wp-content/mu-plugins"
+ARCHIVE ACTION______: "donothing"
+SKIP WP FILES_______: "none"
+ARCHIVE ENGINE______: "ziparchivechunking"
+SET DIR PERMS_______: true
+DIR PERMS VALUE_____: 0755
+SET FILE PERMS______: true
+FILE PERMS VALUE____: 0644
+SAFE MODE___________: 0
+LOGGING_____________: 1
+ZIP THROTTLING______: false
+WP CONFIG___________: "modify"
+HTACCESS CONFIG_____: "new"
+OTHER CONFIG________: "new"
+FILE TIME___________: "current"
+REMOVE RENDUNDANT___: false
+********************************************************************************
+
+REMOVE FILTERS
+	DIR : "/home/nhbomqlz/public_html/dup-installer"
+	FILE: "/home/nhbomqlz/public_html/20231130_mauwebsieuthimevabe_[HASH]_20231130143840_installer-backup.php"
+	FILE: "/home/nhbomqlz/public_html/20231130_mauwebsieuthimevabe_[HASH]_20231130143840_archive.zip"
+	FILE: "/home/nhbomqlz/public_html/installer.php"
+	FILE: "/home/nhbomqlz/public_html/dup-installer-bootlog__e9517ed-30143840.txt"
+EXTRACTION FILTERS
+	DIR : "dup-installer"
+	FILE: "20231130_mauwebsieuthimevabe_[HASH]_20231130143840_installer-backup.php"
+--------------------------------------
+
+
+EXTRACTION: ZIP CHUNKING >>> START
+MAINTENANCE MODE ENABLE
+BEFORE EXTRACION ACTIONS
+
+*** RESET CONFIG FILES IN CURRENT HOSTING
+RESET CONFIG FILES: I'M GOING TO MOVE CONFIG FILE "wp-config.php" IN ORIGINAL FOLDER
+	CONFIG FILE HAS BEEN RESET
+RESET CONFIG FILES: I'M GOING TO MOVE CONFIG FILE ".htaccess" IN ORIGINAL FOLDER
+	CONFIG FILE HAS BEEN RESET
+*** RESET CONFIG FILES END
+MAINTENANCE MODE ENABLE
+
+*** CREATE FOLDER AND PERMISSION PREPARE
+FOLDER PREPARE DONE
+ARCHIVE OFFSET 0
+CHUNK COMPLETE - RUNTIME: 5.0444 sec. - Files processed: 4,781 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 4781
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+CHUNK COMPLETE - RUNTIME: 5.0060 sec. - Files processed: 9,418 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 9418
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+CHUNK COMPLETE - RUNTIME: 5.0453 sec. - Files processed: 12,254 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 12254
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+CHUNK COMPLETE - RUNTIME: 5.0125 sec. - Files processed: 13,090 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 13090
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+CHUNK COMPLETE - RUNTIME: 5.0064 sec. - Files processed: 14,177 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 14177
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+CHUNK COMPLETE - RUNTIME: 5.0853 sec. - Files processed: 15,636 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [extract] START
+MAINTENANCE MODE ENABLE
+ARCHIVE OFFSET 15636
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+FILE EXTRACTION: done processing last file in list of 16754
+
+EXTRACTION: ZIP CHUNKING >>> DONE
+
+EXTRACTION COMPLETE @ 06:28:52 - RUNTIME: 32.3614 sec. - Files processed: 16,048 of 16,048
+AJAX ACTION [extract] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [dbinstall] START
+ADD PREFIX META MAP ID 0 wp_
+
+
+
+********************************************************************************
+* DUPLICATOR PRO INSTALL-LOG
+* STEP-2 START @ 06:28:52
+* NOTICE: Do NOT post to public sites or forums!!
+********************************************************************************
+USER INPUTS
+DB ENGINE___________: "chunk"
+VIEW MODE___________: "basic"
+DB ACTION___________: "empty"
+DB HOST_____________: "**OBSCURED**"
+DB NAME_____________: "**OBSCURED**"
+DB PASS_____________: "**OBSCURED**"
+DB PORT_____________: "**OBSCURED**"
+USER MODE___________: "overwrite"
+TABLE PREFIX________: "wp_"
+MYSQL MODE__________: "DEFAULT"
+MYSQL MODE OPTS_____: ""
+CHARSET_____________: "utf8"
+COLLATE_____________: ""
+CUNKING_____________: true
+VIEW CREATION_______: true
+STORED PROCEDURE____: true
+FUNCTIONS___________: true
+REMOVE DEFINER______: false
+SPLIT CREATES_______: true
+--------------------------------------
+TABLES
+--------------------------------------
+TABLE "wp_actionscheduler_actions"______________________[ROWS:       7] [EXTRACT|REPLACE] [INST NAME: wp_actionscheduler_actions]
+TABLE "wp_actionscheduler_claims"_______________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_actionscheduler_claims]
+TABLE "wp_actionscheduler_groups"_______________________[ROWS:       7] [EXTRACT|REPLACE] [INST NAME: wp_actionscheduler_groups]
+TABLE "wp_actionscheduler_logs"_________________________[ROWS:      15] [EXTRACT|REPLACE] [INST NAME: wp_actionscheduler_logs]
+TABLE "wp_aioseo_cache"_________________________________[ROWS:       2] [EXTRACT|REPLACE] [INST NAME: wp_aioseo_cache]
+TABLE "wp_aioseo_notifications"_________________________[ROWS:       1] [EXTRACT|REPLACE] [INST NAME: wp_aioseo_notifications]
+TABLE "wp_aioseo_posts"_________________________________[ROWS:       6] [EXTRACT|REPLACE] [INST NAME: wp_aioseo_posts]
+TABLE "wp_commentmeta"__________________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_commentmeta]
+TABLE "wp_comments"_____________________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_comments]
+TABLE "wp_duplicator_pro_entities"______________________[ROWS:       6] [EXTRACT|REPLACE] [INST NAME: wp_duplicator_pro_entities]
+TABLE "wp_duplicator_pro_packages"______________________[ROWS:       1] [EXTRACT|REPLACE] [INST NAME: wp_duplicator_pro_packages]
+TABLE "wp_links"________________________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_links]
+TABLE "wp_options"______________________________________[ROWS:     615] [EXTRACT|REPLACE] [INST NAME: wp_options]
+TABLE "wp_postmeta"_____________________________________[ROWS:    5702] [EXTRACT|REPLACE] [INST NAME: wp_postmeta]
+TABLE "wp_posts"________________________________________[ROWS:     837] [EXTRACT|REPLACE] [INST NAME: wp_posts]
+TABLE "wp_termmeta"_____________________________________[ROWS:     285] [EXTRACT|REPLACE] [INST NAME: wp_termmeta]
+TABLE "wp_terms"________________________________________[ROWS:      99] [EXTRACT|REPLACE] [INST NAME: wp_terms]
+TABLE "wp_term_relationships"___________________________[ROWS:     567] [EXTRACT|REPLACE] [INST NAME: wp_term_relationships]
+TABLE "wp_term_taxonomy"________________________________[ROWS:      99] [EXTRACT|REPLACE] [INST NAME: wp_term_taxonomy]
+TABLE "wp_usermeta"_____________________________________[ROWS:      24] [EXTRACT|REPLACE] [INST NAME: wp_usermeta]
+TABLE "wp_users"________________________________________[ROWS:       1] [EXTRACT|REPLACE] [INST NAME: wp_users]
+TABLE "wp_wc_admin_notes"_______________________________[ROWS:     111] [EXTRACT|REPLACE] [INST NAME: wp_wc_admin_notes]
+TABLE "wp_wc_admin_note_actions"________________________[ROWS:     146] [EXTRACT|REPLACE] [INST NAME: wp_wc_admin_note_actions]
+TABLE "wp_wc_category_lookup"___________________________[ROWS:     107] [EXTRACT|REPLACE] [INST NAME: wp_wc_category_lookup]
+TABLE "wp_wc_customer_lookup"___________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_customer_lookup]
+TABLE "wp_wc_download_log"______________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_download_log]
+TABLE "wp_wc_order_coupon_lookup"_______________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_order_coupon_lookup]
+TABLE "wp_wc_order_product_lookup"______________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_order_product_lookup]
+TABLE "wp_wc_order_stats"_______________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_order_stats]
+TABLE "wp_wc_order_tax_lookup"__________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_order_tax_lookup]
+TABLE "wp_wc_product_attributes_lookup"_________________[ROWS:      58] [EXTRACT|REPLACE] [INST NAME: wp_wc_product_attributes_lookup]
+TABLE "wp_wc_product_download_directories"______________[ROWS:       2] [EXTRACT|REPLACE] [INST NAME: wp_wc_product_download_directories]
+TABLE "wp_wc_product_meta_lookup"_______________________[ROWS:     138] [EXTRACT|REPLACE] [INST NAME: wp_wc_product_meta_lookup]
+TABLE "wp_wc_rate_limits"_______________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_rate_limits]
+TABLE "wp_wc_reserved_stock"____________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_reserved_stock]
+TABLE "wp_wc_tax_rate_classes"__________________________[ROWS:       2] [EXTRACT|REPLACE] [INST NAME: wp_wc_tax_rate_classes]
+TABLE "wp_wc_webhooks"__________________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_wc_webhooks]
+TABLE "wp_woocommerce_api_keys"_________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_api_keys]
+TABLE "wp_woocommerce_attribute_taxonomies"_____________[ROWS:       4] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_attribute_taxonomies]
+TABLE "wp_woocommerce_downloadable_product_permissions"_[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_downloadable_product_permissions]
+TABLE "wp_woocommerce_log"______________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_log]
+TABLE "wp_woocommerce_order_itemmeta"___________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_order_itemmeta]
+TABLE "wp_woocommerce_order_items"______________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_order_items]
+TABLE "wp_woocommerce_payment_tokenmeta"________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_payment_tokenmeta]
+TABLE "wp_woocommerce_payment_tokens"___________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_payment_tokens]
+TABLE "wp_woocommerce_sessions"_________________________[ROWS:       1] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_sessions]
+TABLE "wp_woocommerce_shipping_zones"___________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_shipping_zones]
+TABLE "wp_woocommerce_shipping_zone_locations"__________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_shipping_zone_locations]
+TABLE "wp_woocommerce_shipping_zone_methods"____________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_shipping_zone_methods]
+TABLE "wp_woocommerce_tax_rates"________________________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_tax_rates]
+TABLE "wp_woocommerce_tax_rate_locations"_______________[ROWS:       0] [EXTRACT|REPLACE] [INST NAME: wp_woocommerce_tax_rate_locations]
+TABLE "wp_wpforms_tasks_meta"___________________________[ROWS:       4] [EXTRACT|REPLACE] [INST NAME: wp_wpforms_tasks_meta]
+TABLE "wp_yoast_indexable"______________________________[ROWS:     517] [EXTRACT|REPLACE] [INST NAME: wp_yoast_indexable]
+TABLE "wp_yoast_indexable_hierarchy"____________________[ROWS:     843] [EXTRACT|REPLACE] [INST NAME: wp_yoast_indexable_hierarchy]
+TABLE "wp_yoast_migrations"_____________________________[ROWS:      23] [EXTRACT|REPLACE] [INST NAME: wp_yoast_migrations]
+TABLE "wp_yoast_primary_term"___________________________[ROWS:     130] [EXTRACT|REPLACE] [INST NAME: wp_yoast_primary_term]
+TABLE "wp_yoast_seo_links"______________________________[ROWS:     387] [EXTRACT|REPLACE] [INST NAME: wp_yoast_seo_links]
+********************************************************************************
+
+--------------------------------------
+DATABASE-ENVIRONMENT
+--------------------------------------
+MYSQL VERSION:	This Server: 10.5.26 -- Build Server: 10.4.14
+FILE SIZE:	dup-database__[HASH].sql (4.29MB)
+TIMEOUT:	5000
+MAXPACK:	268435456
+SQLMODE-GLOBAL:	NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+SQLMODE-SESSION:NO_AUTO_VALUE_ON_ZERO
+DROP ALL TABLES
+DROP TABLE wp_commentmeta
+DROP TABLE wp_comments
+DROP TABLE wp_duplicator_packages
+DROP TABLE wp_links
+DROP TABLE wp_options
+DROP TABLE wp_postmeta
+DROP TABLE wp_posts
+DROP TABLE wp_term_relationships
+DROP TABLE wp_term_taxonomy
+DROP TABLE wp_termmeta
+DROP TABLE wp_terms
+DROP TABLE wp_usermeta
+DROP TABLE wp_users
+--------------------------------------
+DATABASE RESULTS
+--------------------------------------
+QUERY FIXES
+GLOBAL RULES ADDED: PROC AND VIEWS
+
+QUERY FIXES GLOBAL RULES
+	SEARCH  => /^(\s*(?:\/\*!\d+\s)?\s*(?:CREATE.+)?DEFINER\s*=)([^\*\s]+)(.*)$/m
+	REPLACE => $1`nhbomqlz_bommart`@`localhost`$3
+
+	SEARCH  => /^(\s*CREATE.+(?:PROCEDURE|FUNCTION)[\s\S]*)(BEGIN)([\s\S]*)$/
+	REPLACE => $1SQL SECURITY INVOKER
+$2$3
+
+--------------------------------------
+** DATABASE CHUNK install start
+--------------------------------------
+DATABASE CHUNK SEEK POSITION: 0
+Auto Commit set to false successfully
+NO TABLE TO SKIP
+DATABASE CHUNK: CREATION TABLE MARKER FOUND
+Auto Commit set to true successfully
+--------------------------------------
+** DATABASE CHUNK install end
+--------------------------------------
+ERRORS FOUND:	0
+DROPPED TABLES:	13
+RENAMED TABLES:	0
+QUERIES RAN:	119
+
+TABLES ROWS IN DATABASE AFTER EXTRACTION
+
+TABLE "wp_actionscheduler_actions"______________________[ROWS:     7]
+TABLE "wp_actionscheduler_claims"_______________________[ROWS:     0]
+TABLE "wp_actionscheduler_groups"_______________________[ROWS:     7]
+TABLE "wp_actionscheduler_logs"_________________________[ROWS:    15]
+TABLE "wp_aioseo_cache"_________________________________[ROWS:     2]
+TABLE "wp_aioseo_notifications"_________________________[ROWS:     1]
+TABLE "wp_aioseo_posts"_________________________________[ROWS:     6]
+TABLE "wp_commentmeta"__________________________________[ROWS:     0]
+TABLE "wp_comments"_____________________________________[ROWS:     0]
+TABLE "wp_duplicator_pro_entities"______________________[ROWS:     6]
+TABLE "wp_duplicator_pro_packages"______________________[ROWS:     1]
+TABLE "wp_links"________________________________________[ROWS:     0]
+TABLE "wp_options"______________________________________[ROWS:   615]
+TABLE "wp_postmeta"_____________________________________[ROWS:  5702]
+TABLE "wp_posts"________________________________________[ROWS:   837]
+TABLE "wp_term_relationships"___________________________[ROWS:   567]
+TABLE "wp_term_taxonomy"________________________________[ROWS:    99]
+TABLE "wp_termmeta"_____________________________________[ROWS:   285]
+TABLE "wp_terms"________________________________________[ROWS:    99]
+TABLE "wp_usermeta"_____________________________________[ROWS:    24]
+TABLE "wp_users"________________________________________[ROWS:     1]
+TABLE "wp_wc_admin_note_actions"________________________[ROWS:   146]
+TABLE "wp_wc_admin_notes"_______________________________[ROWS:   111]
+TABLE "wp_wc_category_lookup"___________________________[ROWS:   107]
+TABLE "wp_wc_customer_lookup"___________________________[ROWS:     0]
+TABLE "wp_wc_download_log"______________________________[ROWS:     0]
+TABLE "wp_wc_order_coupon_lookup"_______________________[ROWS:     0]
+TABLE "wp_wc_order_product_lookup"______________________[ROWS:     0]
+TABLE "wp_wc_order_stats"_______________________________[ROWS:     0]
+TABLE "wp_wc_order_tax_lookup"__________________________[ROWS:     0]
+TABLE "wp_wc_product_attributes_lookup"_________________[ROWS:    58]
+TABLE "wp_wc_product_download_directories"______________[ROWS:     2]
+TABLE "wp_wc_product_meta_lookup"_______________________[ROWS:   138]
+TABLE "wp_wc_rate_limits"_______________________________[ROWS:     0]
+TABLE "wp_wc_reserved_stock"____________________________[ROWS:     0]
+TABLE "wp_wc_tax_rate_classes"__________________________[ROWS:     2]
+TABLE "wp_wc_webhooks"__________________________________[ROWS:     0]
+TABLE "wp_woocommerce_api_keys"_________________________[ROWS:     0]
+TABLE "wp_woocommerce_attribute_taxonomies"_____________[ROWS:     4]
+TABLE "wp_woocommerce_downloadable_product_permissions"_[ROWS:     0]
+TABLE "wp_woocommerce_log"______________________________[ROWS:     0]
+TABLE "wp_woocommerce_order_itemmeta"___________________[ROWS:     0]
+TABLE "wp_woocommerce_order_items"______________________[ROWS:     0]
+TABLE "wp_woocommerce_payment_tokenmeta"________________[ROWS:     0]
+TABLE "wp_woocommerce_payment_tokens"___________________[ROWS:     0]
+TABLE "wp_woocommerce_sessions"_________________________[ROWS:     1]
+TABLE "wp_woocommerce_shipping_zone_locations"__________[ROWS:     0]
+TABLE "wp_woocommerce_shipping_zone_methods"____________[ROWS:     0]
+TABLE "wp_woocommerce_shipping_zones"___________________[ROWS:     0]
+TABLE "wp_woocommerce_tax_rate_locations"_______________[ROWS:     0]
+TABLE "wp_woocommerce_tax_rates"________________________[ROWS:     0]
+TABLE "wp_wpforms_tasks_meta"___________________________[ROWS:     4]
+TABLE "wp_yoast_indexable"______________________________[ROWS:   517]
+TABLE "wp_yoast_indexable_hierarchy"____________________[ROWS:   843]
+TABLE "wp_yoast_migrations"_____________________________[ROWS:    23]
+TABLE "wp_yoast_primary_term"___________________________[ROWS:   130]
+TABLE "wp_yoast_seo_links"______________________________[ROWS:   387]
+
+INSERT DATA RUNTIME: 0.9637 sec.
+STEP-2 COMPLETE @ 06:28:53 - RUNTIME: 0.9637 sec.
+AJAX ACTION [dbinstall] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [webupdate] START
+
+====================================
+SET SEARCH AND REPLACE LIST INSTALL TYPE single site
+====================================
+SEARCH ITEM[T:path |P:12] SEARCH: C:/xampp/htdocs/mevabe1 REPLACE: /home/nhbomqlz/public_html [SCOPE: ALL]
+SEARCH ITEM[T:urlnd|P:12] SEARCH: http://localhost/mevabe1 REPLACE: https://bommart.vn [SCOPE: ALL]
+CHUNK LOAD DATA: IS NULL 
+CHUNK ACTION: CURRENT [start][][]
+
+
+********************************************************************************
+DUPLICATOR PRO INSTALL-LOG
+STEP-3 START @ 06:28:53
+NOTICE: Do NOT post to public sites or forums
+********************************************************************************
+CHARSET SERVER:	"utf8"
+CHARSET CLIENT:	"utf8"
+********************************************************************************
+OPTIONS:
+DISALLOW_FILE_EDIT____: [value = ], [inWpConfig = ]
+DISALLOW_FILE_MODS____: [value = ], [inWpConfig = ]
+AUTOSAVE_INTERVAL_____: [value = 60], [inWpConfig = ]
+WP_POST_REVISIONS_____: [value = 9223372036854775807], [inWpConfig = ]
+FORCE_SSL_ADMIN_______: [value = ], [inWpConfig = ]
+WP_AUTO_UPDATE_CORE___: [value = minor], [inWpConfig = 1]
+WP_CACHE______________: [value = ], [inWpConfig = ]
+WPCACHEHOME___________: [value = /], [inWpConfig = ]
+WP_DEBUG______________: [value = ], [inWpConfig = 1]
+WP_DEBUG_LOG__________: [value = ], [inWpConfig = ]
+WP_DEBUG_DISPLAY______: [value = 1], [inWpConfig = ]
+WP_DISABLE_FATAL_ERROR_HANDLER: [value = ], [inWpConfig = ]
+SCRIPT_DEBUG__________: [value = ], [inWpConfig = ]
+CONCATENATE_SCRIPTS___: [value = ], [inWpConfig = ]
+SAVEQUERIES___________: [value = ], [inWpConfig = ]
+ALTERNATE_WP_CRON_____: [value = ], [inWpConfig = ]
+DISABLE_WP_CRON_______: [value = ], [inWpConfig = ]
+WP_CRON_LOCK_TIMEOUT__: [value = 60], [inWpConfig = ]
+COOKIE_DOMAIN_________: [value = ], [inWpConfig = ]
+WP_MEMORY_LIMIT_______: [value = 40M], [inWpConfig = ]
+WP_MAX_MEMORY_LIMIT___: [value = 512M], [inWpConfig = ]
+WP_TEMP_DIR___________: [value = ], [inWpConfig = ]
+********************************************************************************
+
+********************************************************************************
+CHUNK PARAMS:
+maxIteration__________: 0
+timeOut_______________: 5000
+throttling____________: 2
+rowsPerPage___________: 1000
+********************************************************************************
+
+CHUNK ACTION: CURRENT [cleanup_trans][][]
+CLEAN OPTIONS [wp_options]
+	`option_name` LIKE "\_transient%"
+	`option_name` LIKE "\_site\_transient%"
+	`option_name` IN ("duplicator_pro_ui_view_state","duplicator_pro_package_active","duplicator_pro_settings")
+DATABASE OPTIONS DELETED [ROWS:    57]
+CHUNK ACTION: CURRENT [cleanup_extra][][]
+CLEANUP EXTRA
+	- SKIP DROP VIEWS
+	- SKIP DROP PROCS
+	- SKIP DROP FUNCS
+CHUNK ACTION: CURRENT [cleanup_packages][][]
+EMPTY PACKAGES TABLE
+CLEAN PACKAGES
+DATABASE PACKAGE DELETED [ROWS:     1]
+CHUNK ACTION: CURRENT [init][][]
+
+EVALUATE TABLE: "wp_actionscheduler_actions"______________________[ROWS:     7][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_actionscheduler_actions][0]
+
+EVALUATE TABLE: "wp_actionscheduler_claims"_______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_actionscheduler_groups"_______________________[ROWS:     7][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_actionscheduler_groups][0]
+
+EVALUATE TABLE: "wp_actionscheduler_logs"_________________________[ROWS:    15][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_actionscheduler_logs][0]
+
+EVALUATE TABLE: "wp_aioseo_cache"_________________________________[ROWS:     2][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_aioseo_cache][0]
+
+EVALUATE TABLE: "wp_aioseo_notifications"_________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_aioseo_notifications][0]
+
+EVALUATE TABLE: "wp_aioseo_posts"_________________________________[ROWS:     6][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_aioseo_posts][0]
+
+EVALUATE TABLE: "wp_commentmeta"__________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_comments"_____________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_duplicator_pro_entities"______________________[ROWS:     6][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_duplicator_pro_entities][0]
+
+EVALUATE TABLE: "wp_duplicator_pro_packages"______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_links"________________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_options"______________________________________[ROWS:   558][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_options][0]
+
+EVALUATE TABLE: "wp_postmeta"_____________________________________[ROWS:  5702][PG:   6][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][0]
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][1]
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][2]
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][3]
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][4]
+	CHUNK ACTION: CURRENT [search_replace][wp_postmeta][5]
+
+EVALUATE TABLE: "wp_posts"________________________________________[ROWS:   837][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_posts][0]
+
+EVALUATE TABLE: "wp_termmeta"_____________________________________[ROWS:   285][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_termmeta][0]
+
+EVALUATE TABLE: "wp_terms"________________________________________[ROWS:    99][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_terms][0]
+
+EVALUATE TABLE: "wp_term_relationships"___________________________[ROWS:   567][PG:   1][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_term_taxonomy"________________________________[ROWS:    99][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_term_taxonomy][0]
+
+EVALUATE TABLE: "wp_usermeta"_____________________________________[ROWS:    24][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_usermeta][0]
+
+EVALUATE TABLE: "wp_users"________________________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_users][0]
+
+EVALUATE TABLE: "wp_wc_admin_notes"_______________________________[ROWS:   111][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_admin_notes][0]
+
+EVALUATE TABLE: "wp_wc_admin_note_actions"________________________[ROWS:   146][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_admin_note_actions][0]
+
+EVALUATE TABLE: "wp_wc_category_lookup"___________________________[ROWS:   107][PG:   1][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_customer_lookup"___________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_download_log"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_order_coupon_lookup"_______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_order_product_lookup"______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_order_stats"_______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_order_tax_lookup"__________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_product_attributes_lookup"_________________[ROWS:    58][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_product_attributes_lookup][0]
+
+EVALUATE TABLE: "wp_wc_product_download_directories"______________[ROWS:     2][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_product_download_directories][0]
+
+EVALUATE TABLE: "wp_wc_product_meta_lookup"_______________________[ROWS:   138][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_product_meta_lookup][0]
+
+EVALUATE TABLE: "wp_wc_rate_limits"_______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_reserved_stock"____________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wc_tax_rate_classes"__________________________[ROWS:     2][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wc_tax_rate_classes][0]
+
+EVALUATE TABLE: "wp_wc_webhooks"__________________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_api_keys"_________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_attribute_taxonomies"_____________[ROWS:     4][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_woocommerce_attribute_taxonomies][0]
+
+EVALUATE TABLE: "wp_woocommerce_downloadable_product_permissions"_[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_log"______________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_order_itemmeta"___________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_order_items"______________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_payment_tokenmeta"________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_payment_tokens"___________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_sessions"_________________________[ROWS:     1][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_woocommerce_sessions][0]
+
+EVALUATE TABLE: "wp_woocommerce_shipping_zones"___________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_shipping_zone_locations"__________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_shipping_zone_methods"____________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_tax_rates"________________________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_woocommerce_tax_rate_locations"_______________[ROWS:     0][PG:   0][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_wpforms_tasks_meta"___________________________[ROWS:     4][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_wpforms_tasks_meta][0]
+
+EVALUATE TABLE: "wp_yoast_indexable"______________________________[ROWS:   517][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_yoast_indexable][0]
+
+EVALUATE TABLE: "wp_yoast_indexable_hierarchy"____________________[ROWS:   843][PG:   1][SCAN:no columns  ]
+
+EVALUATE TABLE: "wp_yoast_migrations"_____________________________[ROWS:    23][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_yoast_migrations][0]
+
+EVALUATE TABLE: "wp_yoast_primary_term"___________________________[ROWS:   130][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_yoast_primary_term][0]
+
+EVALUATE TABLE: "wp_yoast_seo_links"______________________________[ROWS:   387][PG:   1][SCAN:text columns]
+	--- BASE STRINGS ---
+	SEARCH[path ]  1:"C:/xampp/htdocs/mevabe1" =========================> "/home/nhbomqlz/public_html"
+	SEARCH[urlnd]  2:"http://localhost/mevabe1" ========================> "https://bommart.vn"
+	CHUNK ACTION: CURRENT [search_replace][wp_yoast_seo_links][0]
+--------------------------------------
+SCANNED:	Tables:57 	|	 Rows:9172 	|	 Cells:85240 
+UPDATED:	Tables:9 	|	 Rows:1712 	|	 Cells:2964 
+ERRORS:		0 
+RUNTIME:	1.538100 sec
+CHUNK ACTION: CURRENT [rem_maintenance][][]
+
+====================================
+REMOVE MAINTENANCE MODE
+====================================
+MAINTENANCE MODE DISABLE
+CHUNK ACTION: CURRENT [rem_licenze_key][][]
+
+====================================
+REMOVE LICENSE KEY
+====================================
+CHUNK ACTION: CURRENT [config_update][][]
+SET CONFIG FILES
+Retained original entry wpconfig target:/home/nhbomqlz/public_html/wp-config.php
+New htaccess file created:/home/nhbomqlz/public_html/.htaccess
+
+====================================
+CONFIGURATION FILE UPDATES
+====================================
+	UPDATE ABSPATH "dirname(__FILE__) . '/'"
+	UPDATE DB_NAME ""nhbomqlz_bommartdb""
+	UPDATE DB_USER "** OBSCURED **"
+	UPDATE DB_PASSWORD "** OBSCURED **"
+	UPDATE DB_HOST ""localhost""
+	UPDATE DB_CHARSET "utf8"
+	UPDATE DB_COLLATE ""
+	WP CONFIG UPDATE WP_DEBUG false
+	WP CONFIG UPDATE WP_AUTO_UPDATE_CORE "minor"
+	
+*** UPDATED WP CONFIG FILE ***
+
+====================================
+HTACCESS UPDATE
+====================================
+
+WEB SERVER CONFIGURATION FILE UPDATED:
+- Preparing .htaccess file with basic setup.
+HTACCESS FILE - Successfully updated the .htaccess file setting.
+
+====================================
+INDEX.PHP UPDATE
+====================================
+INDEX.PHP updated with new blog header "dirname(__FILE__) . '/wp-blog-header.php'"
+
+CHUNK ACTION: CURRENT [gen_update][][]
+
+====================================
+GENERAL UPDATES
+====================================
+
+====================================
+MANAGE PLUGINS
+====================================
+Activated plugins listed here will be deactivated: Array
+(
+)
+
+CHUNK ACTION: CURRENT [gen_clean][][]
+
+====================================
+GENERAL CLEANUP
+====================================
+ - REMOVED 0 storage items
+ - REMOVED 0 schedule items
+RESET ALL USERS SESSION TOKENS
+MIGRATION INFO SET
+CHUNK ACTION: CURRENT [create_admin][][]
+
+====================================
+RESET USERS PASSWORD
+====================================
+CHUNK ACTION: CURRENT [notice_test][][]
+
+====================================
+CHECK FOR INDEX.HTML
+====================================
+NO INDEX.HTML WAS FOUND
+
+====================================
+NOTICES TEST
+====================================
+No General Notices Found
+
+CHUNK ACTION: CURRENT [cleanup_tmp_files][][]
+
+====================================
+CLEANUP TMP FILES
+====================================
+CHUNK ACTION: CURRENT [set_files_perms][][]
+
+====================================
+SET PARAMS PERMISSION
+====================================
+
+*** SET FOLDER PERMISSION AFTER EXTRACTION
+--------------------------------------
+PATHS MAPPING : "/home/nhbomqlz/public_html"
+--------------------------------------
+SET FOLDER PERMISSION DONE
+CHUNK ACTION: CURRENT [final_report][][]
+
+====================================
+FINAL REPORT NOTICES
+====================================
+
+STEP-3 COMPLETE @ 06:28:55 - RUNTIME: 1.6859 sec. 
+
+
+AJAX ACTION [webupdate] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [finalpre] START
+AJAX ACTION [finalpre] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+-------------------------
+AJAX ACTION [finalafter] START
+AJAX ACTION [finalafter] SUCCESS
+-------------------------
+
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/src/Core/Bootstrap.php:72] RESET TIME
+
+====================================
+FINAL REPORT NOTICES LIST
+====================================
+-----------------------
+[NOTICE] Warnings or notices on WordPress front-end tests!
+	SECTIONS: general
+	LONG MSG: SCRIPT FILE TEST: /home/nhbomqlz/public_html/index.php
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+E_NOTICE Undefined variable: thumbnail_size
+	FILE: /home/nhbomqlz/public_html/wp-content/themes/tai-khoan-pro/functions.php[179]
+	--- TRACE ---
+	FUNCTION: title_with_cat_shortcode      FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[216]
+	FUNCTION: ux_col                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/row.php[79]
+	FUNCTION: ux_row                        FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/inc/shortcodes/sections.php[237]
+	FUNCTION: ux_section                    FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[394]
+	FUNCTION: do_shortcode_tag              FILE: [-1]
+	FUNCTION: preg_replace_callback         FILE: /home/nhbomqlz/public_html/wp-includes/shortcodes.php[266]
+	FUNCTION: do_shortcode                  FILE: /home/nhbomqlz/public_html/wp-includes/class-wp-hook.php[307]
+	CLASS___: WP_Hook->apply_filters        FILE: /home/nhbomqlz/public_html/wp-includes/plugin.php[191]
+	FUNCTION: apply_filters                 FILE: /home/nhbomqlz/public_html/wp-includes/post-template.php[253]
+	FUNCTION: the_content                   FILE: /home/nhbomqlz/public_html/wp-content/themes/flatsome/page-blank.php[13]
+	FUNCTION: include                       FILE: /home/nhbomqlz/public_html/wp-includes/template-loader.php[106]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-blog-header.php[19]
+	FUNCTION: require                       FILE: /home/nhbomqlz/public_html/index.php[17]
+	FUNCTION: require_once                  FILE: /home/nhbomqlz/public_html/wp-content/wp_test_script_e9517ed-30143840.php[96]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+
+
+-----------------------
+[NOTICE] Warnings or notices on WordPress backend tests!
+	SECTIONS: general
+	LONG MSG: SCRIPT FILE TEST: /home/nhbomqlz/public_html/wp-login.php
+E_UNKNOWN CODE: 32 Module 'redis' already loaded
+	FILE: Unknown[0]
+	--- TRACE ---
+	CLASS___: DUPX_error_handler_script_exec::shutdownFILE: [-1]
+-----
+For solutions to these issues see the online FAQs 
+https://snapcreek.com/duplicator/docs 
+
+
+====================================
+LOG-TIME[/home/nhbomqlz/public_html/dup-installer/ctrls/ctrl.base.php:231][DELTA:   0.14272]  MESSAGE:END RENDER PAGE
+[PHP ERR][E_UNKNOWN CODE: 32] MSG:Module 'redis' already loaded [CODE:32|FILE:Unknown|LINE:0]
