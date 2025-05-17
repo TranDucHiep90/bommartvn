@@ -4,9 +4,13 @@
  */
 namespace FortAwesome;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 require_once trailingslashit( FONTAWESOME_DIR_PATH ) . 'includes/class-fontawesome-exception.php';
 
-use \WP_Error, \InvalidArgumentException;
+use WP_Error, InvalidArgumentException;
 
 /**
  * Provides read/write access to the Font Awesome API settings.
@@ -137,7 +141,7 @@ class FontAwesome_API_Settings {
 	public function initialize() {
 		$this->prepare_encryption();
 
-		$option = get_option( self::OPTIONS_KEY );
+		$option = $this->get_option();
 
 		if (
 			! is_array( $option ) ||
@@ -189,7 +193,7 @@ class FontAwesome_API_Settings {
 			'access_token_expiration_time' => $new_access_token_expiration_time,
 		);
 
-		$old_option_value = get_option( self::OPTIONS_KEY );
+		$old_option_value = $this->get_option();
 
 		if (
 			is_array( $old_option_value ) &&
@@ -209,13 +213,10 @@ class FontAwesome_API_Settings {
 			 * Remove the old API settings file if it exists.
 			 * Anything previously stored in it will be obsolete.
 			 */
-			@unlink( trailingslashit( ABSPATH ) . 'font-awesome-api.ini' );
+			wp_delete_file( trailingslashit( ABSPATH ) . 'font-awesome-api.ini' );
 		}
 
-		return update_option(
-			self::OPTIONS_KEY,
-			$new_option_value
-		);
+		return $this->update_option( $new_option_value );
 	}
 
 	/**
@@ -281,6 +282,8 @@ class FontAwesome_API_Settings {
 	 *
 	 * @param int $access_token_expiration_time time in unix epoch seconds as non-zero integer value
 	 * @throws InvalidArgumentException if the given param is zero or cannot be cast as an integer
+	 * @internal
+	 * @ignore
 	 */
 	public function set_access_token_expiration_time( $access_token_expiration_time ) {
 		$int_val = intval( $access_token_expiration_time );
@@ -302,6 +305,43 @@ class FontAwesome_API_Settings {
 	 */
 	public function access_token_expiration_time() {
 		return $this->access_token_expiration_time;
+	}
+
+	/**
+	 * Internal use only, not part of this plugin's public API.
+	 *
+	 * Returns a current access_token, if available. Attempts to refresh an
+	 * access_token if the one we have is near or past expiration and if an api_token
+	 * is present.
+	 *
+	 * Returns WP_Error indicating any error when trying to refresh an access_token.
+	 * Returns null when there is no api_token.
+	 * Otherwise, returns the current access_token as a string.
+	 *
+	 * @throws ApiTokenMissingException
+	 * @throws ApiTokenEndpointRequestException
+	 * @throws ApiTokenEndpointResponseException
+	 * @throws ApiTokenInvalidException
+	 * @throws AccessTokenStorageException
+	 * @return string|null access_token if available; null if unavailable
+	 * @ignore
+	 * @internal
+	 */
+	public function current_access_token() {
+		if ( ! boolval( $this->api_token() ) ) {
+			return null;
+		}
+
+		$exp          = $this->access_token_expiration_time();
+		$access_token = $this->access_token();
+
+		if ( is_string( $access_token ) && $exp > ( time() - 5 ) ) {
+			return $access_token;
+		} else {
+			// refresh the access token.
+			$this->request_access_token();
+			return $this->access_token();
+		}
 	}
 
 	/**
@@ -334,10 +374,12 @@ class FontAwesome_API_Settings {
 		);
 
 		if ( is_wp_error( $response ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			throw ApiTokenEndpointRequestException::with_wp_error( add_failed_request_diagnostics( $response ) );
 		}
 
 		if ( 200 !== $response['response']['code'] ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			throw ApiTokenInvalidException::with_wp_response( $response );
 		}
 
@@ -349,6 +391,7 @@ class FontAwesome_API_Settings {
 			! isset( $body['expires_in'] ) ||
 			! is_int( $body['expires_in'] )
 		) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			throw ApiTokenEndpointResponseException::with_wp_response( $response );
 		}
 
@@ -357,6 +400,7 @@ class FontAwesome_API_Settings {
 		try {
 			$this->set_access_token_expiration_time( $body['expires_in'] + time() );
 		} catch ( InvalidArgumentException $e ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 			throw ApiTokenEndpointResponseException::with_wp_response( $response );
 		}
 
@@ -493,7 +537,32 @@ class FontAwesome_API_Settings {
 	protected function post( $args ) {
 		return wp_remote_post( FONTAWESOME_API_URL . '/token', $args );
 	}
+
+	/**
+	 * Internal use only. Not part of this plugin's public API.
+	 *
+	 * @ignore
+	 * @internal
+	 */
+	public function get_option() {
+		return get_option( self::OPTIONS_KEY );
+	}
+
+	/**
+	 * Internal use only. Not part of this plugin's public API.
+	 *
+	 * @ignore
+	 * @internal
+	 */
+	public function update_option( $new_option_value ) {
+		return update_option(
+			self::OPTIONS_KEY,
+			$new_option_value
+		);
+	}
 }
+
+// phpcs:disable Universal.Files.SeparateFunctionsFromOO.Mixed
 
 /**
  * Convenience global function to get a singleton instance of the API Settings.

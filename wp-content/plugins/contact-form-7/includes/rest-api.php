@@ -2,8 +2,8 @@
 
 add_action(
 	'rest_api_init',
-	function () {
-		$controller = new WPCF7_REST_Controller;
+	static function () {
+		$controller = new WPCF7_REST_Controller();
 		$controller->register_routes();
 	},
 	10, 0
@@ -22,7 +22,7 @@ class WPCF7_REST_Controller {
 				array(
 					'methods' => WP_REST_Server::READABLE,
 					'callback' => array( $this, 'get_contact_forms' ),
-					'permission_callback' => function () {
+					'permission_callback' => static function () {
 						if ( current_user_can( 'wpcf7_read_contact_forms' ) ) {
 							return true;
 						} else {
@@ -36,7 +36,7 @@ class WPCF7_REST_Controller {
 				array(
 					'methods' => WP_REST_Server::CREATABLE,
 					'callback' => array( $this, 'create_contact_form' ),
-					'permission_callback' => function () {
+					'permission_callback' => static function () {
 						if ( current_user_can( 'wpcf7_edit_contact_forms' ) ) {
 							return true;
 						} else {
@@ -56,7 +56,7 @@ class WPCF7_REST_Controller {
 				array(
 					'methods' => WP_REST_Server::READABLE,
 					'callback' => array( $this, 'get_contact_form' ),
-					'permission_callback' => function ( WP_REST_Request $request ) {
+					'permission_callback' => static function ( WP_REST_Request $request ) {
 						$id = (int) $request->get_param( 'id' );
 
 						if ( current_user_can( 'wpcf7_edit_contact_form', $id ) ) {
@@ -72,7 +72,7 @@ class WPCF7_REST_Controller {
 				array(
 					'methods' => WP_REST_Server::EDITABLE,
 					'callback' => array( $this, 'update_contact_form' ),
-					'permission_callback' => function ( WP_REST_Request $request ) {
+					'permission_callback' => static function ( WP_REST_Request $request ) {
 						$id = (int) $request->get_param( 'id' );
 
 						if ( current_user_can( 'wpcf7_edit_contact_form', $id ) ) {
@@ -88,7 +88,7 @@ class WPCF7_REST_Controller {
 				array(
 					'methods' => WP_REST_Server::DELETABLE,
 					'callback' => array( $this, 'delete_contact_form' ),
-					'permission_callback' => function ( WP_REST_Request $request ) {
+					'permission_callback' => static function ( WP_REST_Request $request ) {
 						$id = (int) $request->get_param( 'id' );
 
 						if ( current_user_can( 'wpcf7_delete_contact_form', $id ) ) {
@@ -179,6 +179,7 @@ class WPCF7_REST_Controller {
 		foreach ( $items as $item ) {
 			$response[] = array(
 				'id' => $item->id(),
+				'hash' => $item->hash(),
 				'slug' => $item->name(),
 				'title' => $item->title(),
 				'locale' => $item->locale(),
@@ -225,7 +226,7 @@ class WPCF7_REST_Controller {
 
 			$response['config_errors'] = $config_validator->collect_error_messages();
 
-			if ( 'save' == $context ) {
+			if ( 'save' === $context ) {
 				$config_validator->save();
 			}
 		}
@@ -292,7 +293,7 @@ class WPCF7_REST_Controller {
 
 			$response['config_errors'] = $config_validator->collect_error_messages();
 
-			if ( 'save' == $context ) {
+			if ( 'save' === $context ) {
 				$config_validator->save();
 			}
 		}
@@ -326,7 +327,7 @@ class WPCF7_REST_Controller {
 	}
 
 	public function create_feedback( WP_REST_Request $request ) {
-		$content_type = $request->get_header( 'Content-Type' );
+		$content_type = $request->get_header( 'Content-Type' ) ?? '';
 
 		if ( ! str_starts_with( $content_type, 'multipart/form-data' ) ) {
 			return new WP_Error( 'wpcf7_unsupported_media_type',
@@ -353,6 +354,13 @@ class WPCF7_REST_Controller {
 		$unit_tag = wpcf7_sanitize_unit_tag(
 			$request->get_param( '_wpcf7_unit_tag' )
 		);
+
+		if ( empty( $unit_tag ) ) {
+			return new WP_Error( 'wpcf7_unit_tag_not_found',
+				__( "There is no valid unit tag.", 'contact-form-7' ),
+				array( 'status' => 400 )
+			);
+		}
 
 		$result = $item->submit();
 
@@ -452,7 +460,7 @@ class WPCF7_REST_Controller {
 		$properties['form'] = array(
 			'content' => (string) $properties['form'],
 			'fields' => array_map(
-				function ( WPCF7_FormTag $form_tag ) {
+				static function ( WPCF7_FormTag $form_tag ) {
 					return array(
 						'type' => $form_tag->type,
 						'basetype' => $form_tag->basetype,
@@ -474,7 +482,7 @@ class WPCF7_REST_Controller {
 		$properties['additional_settings'] = array(
 			'content' => (string) $properties['additional_settings'],
 			'settings' => array_filter( array_map(
-				function ( $setting ) {
+				static function ( $setting ) {
 					$pattern = '/^([a-zA-Z0-9_]+)[\t ]*:(.*)$/';
 
 					if ( preg_match( $pattern, $setting, $matches ) ) {

@@ -167,8 +167,8 @@ function wpcf7_captcha_validation_filter( $result, $tag ) {
 
 	$captchac = '_wpcf7_captcha_challenge_' . $name;
 
-	$prefix = isset( $_POST[$captchac] ) ? (string) $_POST[$captchac] : '';
-	$response = isset( $_POST[$name] ) ? (string) $_POST[$name] : '';
+	$prefix = (string) ( $_POST[$captchac] ?? '' );
+	$response = (string) ( $_POST[$name] ?? '' );
 	$response = wpcf7_canonicalize( $response );
 
 	if ( 0 === strlen( $prefix )
@@ -244,103 +244,6 @@ function wpcf7_captcha_messages( $messages ) {
 }
 
 
-/* Tag generator */
-
-add_action( 'wpcf7_admin_init', 'wpcf7_add_tag_generator_captcha', 46, 0 );
-
-function wpcf7_add_tag_generator_captcha() {
-	if ( ! wpcf7_use_really_simple_captcha() ) {
-		return;
-	}
-
-	$tag_generator = WPCF7_TagGenerator::get_instance();
-	$tag_generator->add( 'captcha',
-		__( 'CAPTCHA (Really Simple CAPTCHA)', 'contact-form-7' ),
-		'wpcf7_tag_generator_captcha' );
-}
-
-function wpcf7_tag_generator_captcha( $contact_form, $args = '' ) {
-	$args = wp_parse_args( $args, array() );
-
-	if ( ! class_exists( 'ReallySimpleCaptcha' ) ) {
-?>
-<div class="control-box">
-<fieldset>
-<legend><?php
-	echo sprintf(
-		/* translators: %s: link labeled 'Really Simple CAPTCHA' */
-		esc_html( __( "To use CAPTCHA, you first need to install and activate %s plugin.", 'contact-form-7' ) ),
-		wpcf7_link( 'https://wordpress.org/plugins/really-simple-captcha/', 'Really Simple CAPTCHA' )
-	);
-?></legend>
-</fieldset>
-</div>
-<?php
-
-		return;
-	}
-
-	$description = __( "Generate form-tags for a CAPTCHA image and corresponding response input field. For more details, see %s.", 'contact-form-7' );
-
-	$desc_link = wpcf7_link( __( 'https://contactform7.com/captcha/', 'contact-form-7' ), __( 'CAPTCHA', 'contact-form-7' ) );
-
-?>
-<div class="control-box">
-<fieldset>
-<legend><?php echo sprintf( esc_html( $description ), $desc_link ); ?></legend>
-
-<table class="form-table">
-<tbody>
-	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" /></td>
-	</tr>
-</tbody>
-</table>
-
-<table class="form-table scope captchac">
-<caption><?php echo esc_html( __( "Image settings", 'contact-form-7' ) ); ?></caption>
-<tbody>
-	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-captchac-id' ); ?>"><?php echo esc_html( __( 'Id attribute', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="id" class="idvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-captchac-id' ); ?>" /></td>
-	</tr>
-
-	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-captchac-class' ); ?>"><?php echo esc_html( __( 'Class attribute', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="class" class="classvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-captchac-class' ); ?>" /></td>
-	</tr>
-</tbody>
-</table>
-
-<table class="form-table scope captchar">
-<caption><?php echo esc_html( __( "Input field settings", 'contact-form-7' ) ); ?></caption>
-<tbody>
-	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-captchar-id' ); ?>"><?php echo esc_html( __( 'Id attribute', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="id" class="idvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-captchar-id' ); ?>" /></td>
-	</tr>
-
-	<tr>
-	<th scope="row"><label for="<?php echo esc_attr( $args['content'] . '-captchar-class' ); ?>"><?php echo esc_html( __( 'Class attribute', 'contact-form-7' ) ); ?></label></th>
-	<td><input type="text" name="class" class="classvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-captchar-class' ); ?>" /></td>
-	</tr>
-</tbody>
-</table>
-</fieldset>
-</div>
-
-<div class="insert-box">
-	<input type="text" name="captcha" class="tag code" readonly="readonly" onfocus="this.select()" />
-
-	<div class="submitbox">
-	<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'contact-form-7' ) ); ?>" />
-	</div>
-</div>
-<?php
-}
-
-
 /* Warning message */
 
 add_action( 'wpcf7_admin_warnings',
@@ -367,18 +270,23 @@ function wpcf7_captcha_display_warning_message( $page, $action, $object ) {
 	$uploads_dir = wpcf7_captcha_tmp_dir();
 	wpcf7_init_captcha();
 
-	if ( ! is_dir( $uploads_dir )
-	or ! wp_is_writable( $uploads_dir ) ) {
-		$message = sprintf( __( 'This contact form contains CAPTCHA fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually.', 'contact-form-7' ), $uploads_dir );
+	if ( ! is_dir( $uploads_dir ) or ! wp_is_writable( $uploads_dir ) ) {
+		$message = sprintf(
+			/* translators: %s: Path to the temporary folder */
+			__( 'This contact form contains CAPTCHA fields, but the temporary folder for the files (%s) does not exist or is not writable. You can create the folder or change its permission manually.', 'contact-form-7' ),
+			$uploads_dir
+		);
 
-		echo '<div class="notice notice-warning"><p>' . esc_html( $message ) . '</p></div>';
+		wp_admin_notice( esc_html( $message ), array( 'type' => 'warning' ) );
 	}
 
-	if ( ! function_exists( 'imagecreatetruecolor' )
-	or ! function_exists( 'imagettftext' ) ) {
+	if (
+		! function_exists( 'imagecreatetruecolor' ) or
+		! function_exists( 'imagettftext' )
+	) {
 		$message = __( "This contact form contains CAPTCHA fields, but the necessary libraries (GD and FreeType) are not available on your server.", 'contact-form-7' );
 
-		echo '<div class="notice notice-warning"><p>' . esc_html( $message ) . '</p></div>';
+		wp_admin_notice( esc_html( $message ), array( 'type' => 'warning' ) );
 	}
 }
 
@@ -412,23 +320,44 @@ function wpcf7_init_captcha() {
 		return $captcha;
 	}
 
-	if ( wp_mkdir_p( $dir ) ) {
-		$htaccess_file = path_join( $dir, '.htaccess' );
+	$result = wp_mkdir_p( $dir );
 
-		if ( file_exists( $htaccess_file ) ) {
+	if ( ! $result ) {
+		return false;
+	}
+
+	$htaccess_file = path_join( $dir, '.htaccess' );
+
+	if ( file_exists( $htaccess_file ) ) {
+		list( $first_line_comment ) = (array) file(
+			$htaccess_file,
+			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+		);
+
+		if ( '# Apache 2.4+' === $first_line_comment ) {
 			return $captcha;
 		}
+	}
 
-		if ( $handle = fopen( $htaccess_file, 'w' ) ) {
-			fwrite( $handle, 'Order deny,allow' . "\n" );
-			fwrite( $handle, 'Deny from all' . "\n" );
-			fwrite( $handle, '<Files ~ "^[0-9A-Za-z]+\\.(jpeg|gif|png)$">' . "\n" );
-			fwrite( $handle, '    Allow from all' . "\n" );
-			fwrite( $handle, '</Files>' . "\n" );
-			fclose( $handle );
-		}
-	} else {
-		return false;
+	if ( $handle = @fopen( $htaccess_file, 'w' ) ) {
+		fwrite( $handle, "# Apache 2.4+\n" );
+		fwrite( $handle, "<IfModule authz_core_module>\n" );
+		fwrite( $handle, "    Require all denied\n" );
+		fwrite( $handle, '    <FilesMatch "^\w+\.(jpe?g|gif|png)$">' . "\n" );
+		fwrite( $handle, "        Require all granted\n" );
+		fwrite( $handle, "    </FilesMatch>\n" );
+		fwrite( $handle, "</IfModule>\n" );
+		fwrite( $handle, "\n" );
+		fwrite( $handle, "# Apache 2.2\n" );
+		fwrite( $handle, "<IfModule !authz_core_module>\n" );
+		fwrite( $handle, "    Order deny,allow\n" );
+		fwrite( $handle, "    Deny from all\n" );
+		fwrite( $handle, '    <FilesMatch "^\w+\.(jpe?g|gif|png)$">' . "\n" );
+		fwrite( $handle, "        Allow from all\n" );
+		fwrite( $handle, "    </FilesMatch>\n" );
+		fwrite( $handle, "</IfModule>\n" );
+
+		fclose( $handle );
 	}
 
 	return $captcha;
@@ -467,12 +396,11 @@ function wpcf7_captcha_tmp_url() {
 function wpcf7_captcha_url( $filename ) {
 	$url = path_join( wpcf7_captcha_tmp_url(), $filename );
 
-	if ( is_ssl()
-	and 'http:' == substr( $url, 0, 5 ) ) {
+	if ( is_ssl() and 'http:' === substr( $url, 0, 5 ) ) {
 		$url = 'https:' . substr( $url, 5 );
 	}
 
-	return apply_filters( 'wpcf7_captcha_url', esc_url_raw( $url ) );
+	return apply_filters( 'wpcf7_captcha_url', sanitize_url( $url ) );
 }
 
 function wpcf7_generate_captcha( $options = null ) {
@@ -625,7 +553,7 @@ function wpcf7_captchac_options( $options ) {
 		preg_match( '%^fg:#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$%',
 			$fg_color, $fc_matches );
 
-		if ( 3 == strlen( $fc_matches[1] ) ) {
+		if ( 3 === strlen( $fc_matches[1] ) ) {
 			$r = substr( $fc_matches[1], 0, 1 );
 			$g = substr( $fc_matches[1], 1, 1 );
 			$b = substr( $fc_matches[1], 2, 1 );
@@ -635,7 +563,7 @@ function wpcf7_captchac_options( $options ) {
 				hexdec( $g . $g ),
 				hexdec( $b . $b ),
 			);
-		} elseif ( 6 == strlen( $fc_matches[1] ) ) {
+		} elseif ( 6 === strlen( $fc_matches[1] ) ) {
 			$r = substr( $fc_matches[1], 0, 2 );
 			$g = substr( $fc_matches[1], 2, 2 );
 			$b = substr( $fc_matches[1], 4, 2 );
@@ -655,7 +583,7 @@ function wpcf7_captchac_options( $options ) {
 		preg_match( '%^bg:#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$%',
 			$bg_color, $bc_matches );
 
-		if ( 3 == strlen( $bc_matches[1] ) ) {
+		if ( 3 === strlen( $bc_matches[1] ) ) {
 			$r = substr( $bc_matches[1], 0, 1 );
 			$g = substr( $bc_matches[1], 1, 1 );
 			$b = substr( $bc_matches[1], 2, 1 );
@@ -665,7 +593,7 @@ function wpcf7_captchac_options( $options ) {
 				hexdec( $g . $g ),
 				hexdec( $b . $b ),
 			);
-		} elseif ( 6 == strlen( $bc_matches[1] ) ) {
+		} elseif ( 6 === strlen( $bc_matches[1] ) ) {
 			$r = substr( $bc_matches[1], 0, 2 );
 			$g = substr( $bc_matches[1], 2, 2 );
 			$b = substr( $bc_matches[1], 4, 2 );

@@ -6,7 +6,6 @@
 namespace Automattic\WooCommerce\Internal\Admin;
 
 use Automattic\WooCommerce\Admin\Features\Features;
-use Automattic\WooCommerce\Internal\Admin\Notes\CouponPageMoved;
 use Automattic\WooCommerce\Admin\PageController;
 
 /**
@@ -51,8 +50,6 @@ class Coupons {
 			return;
 		}
 
-		( new CouponPageMoved() )->init();
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'maybe_add_marketing_coupon_script' ) );
 		add_action( 'woocommerce_register_post_type_shop_coupon', array( $this, 'move_coupons' ) );
 		add_action( 'admin_head', array( $this, 'fix_coupon_menu_highlight' ), 99 );
@@ -73,7 +70,7 @@ class Coupons {
 			__( 'Coupons', 'woocommerce' ),
 			'manage_options',
 			'coupons-moved',
-			[ $this, 'coupon_menu_moved' ]
+			array( $this, 'coupon_menu_moved' )
 		);
 	}
 
@@ -103,7 +100,7 @@ class Coupons {
 	public function fix_coupon_menu_highlight() {
 		global $parent_file, $post_type;
 
-		if ( 'shop_coupon' === $post_type ) {
+		if ( $post_type === 'shop_coupon' ) {
 			$parent_file = 'woocommerce-marketing'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride
 		}
 	}
@@ -113,28 +110,11 @@ class Coupons {
 	 */
 	public function maybe_add_marketing_coupon_script() {
 		$curent_screen = PageController::get_instance()->get_current_page();
-		if ( ! isset( $curent_screen['id'] ) || 'woocommerce-coupons' !== $curent_screen['id'] ) {
+		if ( ! isset( $curent_screen['id'] ) || $curent_screen['id'] !== 'woocommerce-coupons' ) {
 			return;
 		}
 
-		$rtl = is_rtl() ? '-rtl' : '';
-
-		wp_enqueue_style(
-			'wc-admin-marketing-coupons',
-			WCAdminAssets::get_url( "marketing-coupons/style{$rtl}", 'css' ),
-			array(),
-			WCAdminAssets::get_file_version( 'css' )
-		);
-
-		$script_assets_filename = WCAdminAssets::get_script_asset_filename( 'wp-admin-scripts', 'marketing-coupons' );
-		$script_assets          = require WC_ADMIN_ABSPATH . WC_ADMIN_DIST_JS_FOLDER . 'wp-admin-scripts/' . $script_assets_filename;
-
-		wp_enqueue_script(
-			'wc-admin-marketing-coupons',
-			WCAdminAssets::get_url( 'wp-admin-scripts/marketing-coupons', 'js' ),
-			array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
-			WCAdminAssets::get_file_version( 'js' ),
-			true
-		);
+		WCAdminAssets::register_style( 'marketing-coupons', 'style' );
+		WCAdminAssets::register_script( 'wp-admin-scripts', 'marketing-coupons', true );
 	}
 }

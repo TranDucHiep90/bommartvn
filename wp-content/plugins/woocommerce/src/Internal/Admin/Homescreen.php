@@ -63,7 +63,7 @@ class Homescreen {
 
 	/**
 	 * Set free shipping in the same country as the store default
-	 * Flag rate in all other countries when any of the following conditions are ture
+	 * Flag rate in all other countries when any of the following conditions are true
 	 *
 	 * - The store sells physical products, has JP and WCS installed and connected, and is located in the US.
 	 * - The store sells physical products, and is not located in US/Canada/Australia/UK (irrelevant if JP is installed or not).
@@ -97,9 +97,15 @@ class Homescreen {
 			return $settings;
 		}
 
-		$user_skipped_obw = $settings['onboarding']['profile']['skipped'] ?? false;
-		$store_address    = $settings['preloadSettings']['general']['woocommerce_store_address'] ?? '';
-		$product_types    = $settings['onboarding']['profile']['product_types'] ?? array();
+		$user_skipped_obw           = $settings['onboarding']['profile']['skipped'] ?? false;
+		$store_address              = $settings['preloadSettings']['general']['woocommerce_store_address'] ?? '';
+		$product_types              = $settings['onboarding']['profile']['product_types'] ?? array();
+		$user_has_set_store_country = $settings['onboarding']['profile']['is_store_country_set'] ?? false;
+
+		// Do not proceed if user has not filled out their country in the onboarding profiler.
+		if ( ! $user_has_set_store_country ) {
+			return $settings;
+		}
 
 		// If user skipped the obw or has not completed the store_details
 		// then we assume the user is going to sell physical products.
@@ -114,27 +120,32 @@ class Homescreen {
 		$country_code = wc_format_country_state_string( $settings['preloadSettings']['general']['woocommerce_default_country'] )['country'];
 		$country_name = WC()->countries->get_countries()[ $country_code ] ?? null;
 
-		// we also need to make sure woocommerce_store_address is not empty
-		// to make sure store country is set by an actual user
-		// since woocommerce_store_address is set to US:CA by default.
-		if ( '' === $country_code || null === $country_name || '' === $store_address ) {
-			return $settings;
-		}
-
 		$is_jetpack_installed = in_array( 'jetpack', $settings['plugins']['installedPlugins'] ?? array(), true );
 		$is_wcs_installed     = in_array( 'woocommerce-services', $settings['plugins']['installedPlugins'] ?? array(), true );
 
 		if (
 			( 'US' === $country_code && $is_jetpack_installed )
 			||
-			( ! in_array( $country_code, array( 'US', 'CA', 'AU', 'GB' ), true ) )
+			( ! in_array( $country_code, array( 'CA', 'AU', 'NZ', 'SG', 'HK', 'GB', 'ES', 'IT', 'DE', 'FR', 'CL', 'AR', 'PE', 'BR', 'UY', 'GT', 'NL', 'AT', 'BE' ), true ) )
 			||
 			( 'US' === $country_code && false === $is_jetpack_installed && false === $is_wcs_installed )
 		) {
 			$zone = new \WC_Shipping_Zone();
 			$zone->set_zone_name( $country_name );
 			$zone->add_location( $country_code, 'country' );
-			$zone->add_shipping_method( 'free_shipping' );
+
+			// Method creation has no default title, use the REST API to add a title.
+			$instance_id = $zone->add_shipping_method( 'free_shipping' );
+			$request     = new \WP_REST_Request( 'POST', '/wc/v2/shipping/zones/' . $zone->get_id() . '/methods/' . $instance_id );
+			$request->set_body_params(
+				array(
+					'settings' => array(
+						'title' => 'Free shipping',
+					),
+				)
+			);
+			rest_do_request( $request );
+
 			update_option( 'woocommerce_admin_created_default_shipping_zones', 'yes' );
 			Shipping::delete_zone_count_transient();
 		}
@@ -155,7 +166,6 @@ class Homescreen {
 				'homepage_layout',
 				'homepage_stats',
 				'task_list_tracked_started_tasks',
-				'help_panel_highlight_shown',
 			)
 		);
 	}
@@ -231,7 +241,7 @@ class Homescreen {
 	 */
 	public function update_link_structure() {
 		global $submenu;
-		// User does not have capabilites to see the submenu.
+		// User does not have capabilities to see the submenu.
 		if ( ! current_user_can( 'manage_woocommerce' ) || empty( $submenu['woocommerce'] ) ) {
 			return;
 		}

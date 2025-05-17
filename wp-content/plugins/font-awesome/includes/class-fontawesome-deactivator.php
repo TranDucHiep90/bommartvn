@@ -1,9 +1,9 @@
 <?php
 namespace FortAwesome;
 
-require_once trailingslashit( dirname( __FILE__ ) ) . 'class-fontawesome.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'class-fontawesome-api-settings.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'class-fontawesome-release-provider.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome-api-settings.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome-release-provider.php';
 
 /**
  * Fired during plugin deactivation.
@@ -17,16 +17,39 @@ class FontAwesome_Deactivator {
 	 * To remove options data, use uninstall().
 	 */
 	public static function deactivate() {
-		delete_site_transient( FontAwesome_Release_Provider::LAST_USED_RELEASE_TRANSIENT );
-		delete_transient( FontAwesome::V3DEPRECATION_TRANSIENT );
+		if ( is_multisite() && is_network_admin() ) {
+			for_each_blog(
+				function () {
+					self::delete_transients();
+				}
+			);
+		} else {
+			self::delete_transients();
+		}
+	}
+
+	private static function delete_transients() {
+		FontAwesome_Release_Provider::delete_last_used_release();
 	}
 
 	/**
 	 * Delete options data.
 	 */
 	public static function uninstall() {
+		if ( is_multisite() && is_network_admin() ) {
+			for_each_blog(
+				function () {
+					self::delete_options();
+				}
+			);
+		} else {
+			self::delete_options();
+		}
+	}
+
+	private static function delete_options() {
 		delete_option( FontAwesome::OPTIONS_KEY );
-		delete_option( FontAwesome_Release_Provider::OPTIONS_KEY );
+		FontAwesome_Release_Provider::delete_option();
 		delete_option( FontAwesome::CONFLICT_DETECTION_OPTIONS_KEY );
 		delete_option( FontAwesome_API_Settings::OPTIONS_KEY );
 	}

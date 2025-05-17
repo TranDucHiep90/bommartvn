@@ -5,6 +5,10 @@
 
 namespace Automattic\WooCommerce\Internal\Utilities;
 
+use DateTime;
+use DateTimeZone;
+use Vtiful\Kernel\Format;
+
 /**
  * A class of utilities for dealing with the database.
  */
@@ -30,8 +34,11 @@ class DatabaseUtil {
 	 * @return array An array containing the names of the tables that currently don't exist in the database.
 	 */
 	public function get_missing_tables( string $creation_queries ): array {
-		$dbdelta_output = $this->dbdelta( $creation_queries, false );
-		$parsed_output  = $this->parse_dbdelta_output( $dbdelta_output );
+		global $wpdb;
+		$suppress_errors = $wpdb->suppress_errors( true );
+		$dbdelta_output  = $this->dbdelta( $creation_queries, false );
+		$wpdb->suppress_errors( $suppress_errors );
+		$parsed_output = $this->parse_dbdelta_output( $dbdelta_output );
 		return $parsed_output['created_tables'];
 	}
 
@@ -46,7 +53,7 @@ class DatabaseUtil {
 
 		foreach ( $dbdelta_output as $table_name => $result ) {
 			if ( "Created table $table_name" === $result ) {
-				$created_tables[] = $table_name;
+				$created_tables[] = str_replace( '(', '', $table_name );
 			}
 		}
 
@@ -123,15 +130,14 @@ class DatabaseUtil {
 			$index_name = 'PRIMARY';
 		}
 
-		// phpcs:disable WordPress.DB.PreparedSQL
-		return $wpdb->get_col(
-			"
-SELECT column_name FROM INFORMATION_SCHEMA.STATISTICS
-WHERE table_name='$table_name'
-AND table_schema='" . DB_NAME . "'
-AND index_name='$index_name'"
-		);
-		// phpcs:enable WordPress.DB.PreparedSQL
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$results = $wpdb->get_results( $wpdb->prepare( "SHOW INDEX FROM $table_name WHERE Key_name = %s", $index_name ) );
+
+		if ( empty( $results ) ) {
+			return array();
+		}
+
+		return array_column( $results, 'Column_name' );
 	}
 
 	/**
@@ -157,13 +163,15 @@ AND index_name='$index_name'"
 				$value = strval( $value );
 				break;
 			case 'date':
-				$value = $value ? ( new \DateTime( $value ) )->format( 'Y-m-d H:i:s' ) : null;
+				// Date properties are converted to the WP timezone (see WC_Data::set_date_prop() method), however
+				// for our own tables we persist dates in GMT.
+				$value = $value ? ( new DateTime( $value ) )->setTimezone( new DateTimeZone( '+00:00' ) )->format( 'Y-m-d H:i:s' ) : null;
 				break;
 			case 'date_epoch':
-				$value = $value ? ( new \DateTime( "@{$value}" ) )->format( 'Y-m-d H:i:s' ) : null;
+				$value = $value ? ( new DateTime( "@{$value}" ) )->format( 'Y-m-d H:i:s' ) : null;
 				break;
 			default:
-				throw new \Exception( 'Invalid type received: ' . $type );
+				throw new \Exception( esc_html( 'Invalid type received: ' . $type ) );
 		}
 
 		return $value;
@@ -187,10 +195,246 @@ AND index_name='$index_name'"
 		);
 
 		if ( ! isset( $wpdb_placeholder_for_type[ $type ] ) ) {
-			throw new \Exception( 'Invalid column type: ' . $type );
+			throw new \Exception( esc_html( 'Invalid column type: ' . $type ) );
 		}
 
 		return $wpdb_placeholder_for_type[ $type ];
 	}
 
+	/**
+	 * Generates ON DUPLICATE KEY UPDATE clause to be used in migration.
+	 *
+	 * @param array $columns List of column names.
+	 *
+	 * @return string SQL clause for INSERT...ON DUPLICATE KEY UPDATE
+	 */
+	public function generate_on_duplicate_statement_clause( array $columns ): string {
+		$update_value_statements = array();
+		foreach ( $columns as $column ) {
+			$update_value_statements[] = "`$column` = VALUES( `$column` )";
+		}
+		$update_value_clause = implode( ', ', $update_value_statements );
+
+		return "ON DUPLICATE KEY UPDATE $update_value_clause";
+	}
+
+	/**
+	 * Hybrid of $wpdb->update and $wpdb->insert. It will try to update a row, and if it doesn't exist, it will insert it. This needs unique constraints to be set on the table on all ID columns.
+	 *
+	 * You can use this function only when:
+	 * 1. There is only one unique constraint on the table. The constraint can contain multiple columns, but it must be the only one unique constraint.
+	 * 2. The complete unique constraint must be part of the $data array.
+	 * 3. You do not need the LAST_INSERT_ID() value.
+	 *
+	 * @param string $table_name Table name.
+	 * @param array  $data Unescaped data to update (in column => value pairs).
+	 * @param array  $format An array of formats to be mapped to each of the values in $data.
+	 *
+	 * @return int Returns the value of DB's  ON DUPLICATE KEY UPDATE clause.
+	 */
+	public function insert_on_duplicate_key_update( $table_name, $data, $format ): int {
+		global $wpdb;
+		if ( empty( $data ) ) {
+			return 0;
+		}
+
+		$columns      = array_keys( $data );
+		$value_format = array();
+		$values       = array();
+		$index        = 0;
+		// Directly use NULL for placeholder if the value is NULL, since otherwise $wpdb->prepare will convert it to empty string.
+		foreach ( $data as $key => $value ) {
+			if ( is_null( $value ) ) {
+				$value_format[] = 'NULL';
+			} else {
+				$values[]       = $value;
+				$value_format[] = $format[ $index ];
+			}
+			++$index;
+		}
+		$column_clause       = '`' . implode( '`, `', $columns ) . '`';
+		$value_format_clause = implode( ', ', $value_format );
+		$on_duplicate_clause = $this->generate_on_duplicate_statement_clause( $columns );
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- Values are escaped in $wpdb->prepare.
+		$sql = $wpdb->prepare(
+			"
+INSERT INTO $table_name ( $column_clause )
+VALUES ( $value_format_clause )
+$on_duplicate_clause
+",
+			$values
+		);
+		// phpcs:enable
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $sql is prepared.
+		return $wpdb->query( $sql );
+	}
+
+	/**
+	 * Hybrid of $wpdb->update and $wpdb->insert. It will try to update a row, and if it doesn't exist, it will insert it. Unlike `insert_on_duplicate_key_update` it does not require a unique constraint, but also does not guarantee uniqueness on its own.
+	 *
+	 * When a unique constraint is present, it will perform better than the `insert_on_duplicate_key_update` since it needs fewer locks.
+	 *
+	 * Note that it will only update at max just 1 database row, unlike `wpdb->update` which updates everything that matches the `$where` criteria. This is also why it needs a primary_key_column.
+	 *
+	 * @param string $table_name Table Name.
+	 * @param array  $data Data to insert update in array($column_name => $value) format.
+	 * @param array  $where Update conditions in array($column_name => $value) format. Conditions will be joined by AND.
+	 * @param array  $format Format strings for data. Unlike $wpdb->update/insert, this method won't guess the format, and has to be provided explicitly.
+	 * @param array  $where_format Format strings for where conditions. Unlike $wpdb->update/insert, this method won't guess the format, and has to be provided explicitly.
+	 * @param string $primary_key_column Name of the Primary key column.
+	 * @param string $primary_key_format Format for primary key.
+	 *
+	 * @return bool|int Number of rows affected. Boolean false on error.
+	 */
+	public function insert_or_update( $table_name, $data, $where, $format, $where_format, $primary_key_column = 'id', $primary_key_format = '%d' ) {
+		global $wpdb;
+		if ( empty( $data ) || empty( $where ) ) {
+			return 0;
+		}
+
+		// Build select query.
+		$values     = array();
+		$index      = 0;
+		$conditions = array();
+		foreach ( $where as $column => $value ) {
+			if ( is_null( $value ) ) {
+				$conditions[] = "`$column` IS NULL";
+				continue;
+			}
+			$conditions[] = "`$column` = " . $where_format[ $index ];
+			$values[]     = $value;
+			++$index;
+		}
+
+		$conditions = implode( ' AND ', $conditions );
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare -- $primary_key_column and $table_name are hardcoded. $conditions is being prepared.
+		$query = $wpdb->prepare( "SELECT `$primary_key_column` FROM `$table_name` WHERE $conditions LIMIT 1", $values );
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $query is prepared above.
+		$row_id = $wpdb->get_var( $query );
+
+		if ( $row_id ) {
+			// Update the row.
+			$result = $wpdb->update( $table_name, $data, array( $primary_key_column => $row_id ), $format, array( $primary_key_format ) );
+		} else {
+			// Insert the row.
+			$result = $wpdb->insert( $table_name, $data, $format );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Get max index length.
+	 *
+	 * @return int Max index length.
+	 */
+	public function get_max_index_length(): int {
+		/**
+		 * Filters the maximum index length in the database.
+		 *
+		 * Indexes have a maximum size of 767 bytes. Historically, we haven't need to be concerned about that.
+		 * As of WP 4.2, however, they moved to utf8mb4, which uses 4 bytes per character. This means that an index which
+		 * used to have room for floor(767/3) = 255 characters, now only has room for floor(767/4) = 191 characters.
+		 *
+		 * Additionally, MyISAM engine also limits the index size to 1000 bytes. We add this filter so that interested folks on InnoDB engine can increase the size till allowed 3071 bytes.
+		 *
+		 * @param int $max_index_length Maximum index length. Default 191.
+		 *
+		 * @since 8.0.0
+		 */
+		$max_index_length = apply_filters( 'woocommerce_database_max_index_length', 191 );
+		// Index length cannot be more than 768, which is 3078 bytes in utf8mb4 and max allowed by InnoDB engine.
+		return min( absint( $max_index_length ), 767 );
+	}
+
+	/**
+	 * Create a fulltext index on order address table.
+	 *
+	 * @return void
+	 */
+	public function create_fts_index_order_address_table(): void {
+		global $wpdb;
+		$address_table = $wpdb->prefix . 'wc_order_addresses';
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $address_table is hardcoded.
+		$wpdb->query( "CREATE FULLTEXT INDEX order_addresses_fts ON $address_table (first_name, last_name, company, address_1, address_2, city, state, postcode, country, email, phone)" );
+	}
+
+	/**
+	 * Helper method to drop the fulltext index on order address table.
+	 *
+	 * @since 9.4.0
+	 *
+	 * @return void
+	 */
+	public function drop_fts_index_order_address_table(): void {
+		global $wpdb;
+		$address_table = $wpdb->prefix . 'wc_order_addresses';
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $address_table is hardcoded.
+		$wpdb->query( "ALTER TABLE $address_table DROP INDEX order_addresses_fts;" );
+	}
+
+	/**
+	 * Sanitize FTS Search params to remove relevancy operators for performance, and add partial matches. Useful when the sorting is already happening based on some other conditions, so relevancy calculation is not needed.
+	 *
+	 * @since 9.4.0
+	 *
+	 * @param string $param Search term.
+	 *
+	 * @return string Sanitized search term.
+	 */
+	public function sanitise_boolean_fts_search_term( string $param ): string {
+		// Remove any operator to prevent incorrect query and fatals, such as search starting with `++`. We can allow this in the future if we have proper validation for FTS search operators.
+		// Space is allowed to provide multiple words.
+		$sanitized_param = preg_replace( '/[^\p{L}\p{N}_]+/u', ' ', $param );
+		if ( $sanitized_param !== $param ) {
+			$param = str_replace( '"', '', $param );
+			return '"' . $param . '"';
+		}
+		// Split the search phrase into words so that we can add operators when needed.
+		$words           = explode( ' ', $param );
+		$sanitized_words = array();
+		foreach ( $words as $word ) {
+			// Add `*` as suffix to every term so that partial matches happens.
+			$word              = $word . '*';
+			$sanitized_words[] = $word;
+		}
+		return implode( ' ', $sanitized_words );
+	}
+
+	/**
+	 * Check if fulltext index with key `order_addresses_fts` on order address table exists.
+	 *
+	 * @return bool
+	 */
+	public function fts_index_on_order_address_table_exists(): bool {
+		global $wpdb;
+		$address_table = $wpdb->prefix . 'wc_order_addresses';
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $address_table is hardcoded.
+		return ! empty( $wpdb->get_results( "SHOW INDEX FROM $address_table WHERE Key_name = 'order_addresses_fts'" ) );
+	}
+
+	/**
+	 * Create a fulltext index on order item table.
+	 *
+	 * @return void
+	 */
+	public function create_fts_index_order_item_table(): void {
+		global $wpdb;
+		$order_item_table = $wpdb->prefix . 'woocommerce_order_items';
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_item_table is hardcoded.
+		$wpdb->query( "CREATE FULLTEXT INDEX order_item_fts ON $order_item_table (order_item_name)" );
+	}
+
+	/**
+	 * Check if fulltext index with key `order_item_fts` on order item table exists.
+	 *
+	 * @return bool
+	 */
+	public function fts_index_on_order_item_table_exists(): bool {
+		global $wpdb;
+		$order_item_table = $wpdb->prefix . 'woocommerce_order_items';
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_item_table is hardcoded.
+		return ! empty( $wpdb->get_results( "SHOW INDEX FROM $order_item_table WHERE Key_name = 'order_item_fts'" ) );
+	}
 }

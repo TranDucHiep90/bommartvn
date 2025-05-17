@@ -95,6 +95,15 @@ class ReviewsListTable extends WP_List_Table {
 		// Include the offset argument.
 		$args = wp_parse_args( $this->get_offset_arguments(), $args );
 
+		/**
+		 * Provides an opportunity to alter the comment query arguments used within
+		 * the product reviews admin list table.
+		 *
+		 * @since 7.0.0
+		 *
+		 * @param array $args Comment query args.
+		 */
+		$args     = (array) apply_filters( 'woocommerce_product_reviews_list_table_prepare_items_args', $args );
 		$comments = get_comments( $args );
 
 		update_comment_cache( $comments );
@@ -560,6 +569,17 @@ class ReviewsListTable extends WP_List_Table {
 			);
 		}
 
+		/**
+		 * Filters the action links displayed for each review in the Reviews list table.
+		 *
+		 * @since 9.8.0
+		 * @param string[]   $actions An array of comment actions. Default actions include:
+		 *                            'Approve', 'Unapprove', 'Edit', 'Reply', 'Spam',
+		 *                            'Delete', and 'Trash'.
+		 * @param WP_Comment $item The comment object.
+		 * */
+		$actions = apply_filters( 'comment_row_actions', array_filter( $actions ), $item );
+
 		$always_visible = 'excerpt' === get_user_setting( 'posts_list_mode', 'list' );
 
 		$output = '<div class="' . ( $always_visible ? 'row-actions visible' : 'row-actions' ) . '">';
@@ -623,7 +643,7 @@ class ReviewsListTable extends WP_List_Table {
 	/**
 	 * Gets the name of the default primary column.
 	 *
-	 * @return string Name of the primary colum.
+	 * @return string Name of the primary column.
 	 */
 	protected function get_primary_column_name() : string {
 		return 'comment';
@@ -948,12 +968,9 @@ class ReviewsListTable extends WP_List_Table {
 			echo $in_reply_to . '<br><br>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
-		printf(
-			'%1$s%2$s%3$s',
-			'<div class="comment-text">',
-			get_comment_text( $item->comment_ID ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			'</div>'
-		);
+		echo '<div class="comment-text">';
+		comment_text( $item->comment_ID );
+		echo '</div>';
 
 		if ( $this->current_user_can_edit_review ) {
 			?>
@@ -1034,7 +1051,7 @@ class ReviewsListTable extends WP_List_Table {
 			if ( ! empty( $item->comment_author_email ) && is_email( $item->comment_author_email ) ) :
 
 				?>
-				<a href="mailto:<?php echo esc_attr( $item->comment_author_email ); ?>"><?php echo esc_html( $item->comment_author_email ); ?></a>
+				<a href="mailto:<?php echo esc_attr( $item->comment_author_email ); ?>"><?php echo esc_html( $item->comment_author_email ); ?></a><br>
 				<?php
 
 			endif;
@@ -1326,12 +1343,22 @@ class ReviewsListTable extends WP_List_Table {
 	 * @return void
 	 */
 	protected function review_type_dropdown( $current_type ) : void {
-
-		$item_types = [
-			'all'     => __( 'All types', 'woocommerce' ),
-			'comment' => __( 'Replies', 'woocommerce' ),
-			'review'  => __( 'Reviews', 'woocommerce' ),
-		];
+		/**
+		 * Sets the possible options used in the Product Reviews List Table's filter-by-review-type
+		 * selector.
+		 *
+		 * @since 7.0.0
+		 *
+		 * @param array Map of possible review types.
+		 */
+		$item_types = apply_filters(
+			'woocommerce_product_reviews_list_table_item_types',
+			array(
+				'all'     => __( 'All types', 'woocommerce' ),
+				'comment' => __( 'Replies', 'woocommerce' ),
+				'review'  => __( 'Reviews', 'woocommerce' ),
+			)
+		);
 
 		?>
 		<label class="screen-reader-text" for="filter-by-review-type"><?php esc_html_e( 'Filter by review type', 'woocommerce' ); ?></label>

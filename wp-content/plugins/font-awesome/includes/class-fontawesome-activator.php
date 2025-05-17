@@ -1,9 +1,10 @@
 <?php
 namespace FortAwesome;
 
-require_once trailingslashit( dirname( __FILE__ ) ) . '../defines.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'class-fontawesome.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'class-fontawesome-release-provider.php';
+require_once trailingslashit( __DIR__ ) . '../defines.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome-release-provider.php';
+require_once trailingslashit( __DIR__ ) . 'class-fontawesome-svg-styles-manager.php';
 
 /**
  * Plugin activation logic.
@@ -19,6 +20,7 @@ class FontAwesome_Activator {
 	 * @since 4.0.0
 	 * @throws ApiRequestException
 	 * @throws ApiResponseException
+	 * @throws ActivationException
 	 * @throws ReleaseProviderStorageException
 	 */
 	public static function activate() {
@@ -42,15 +44,38 @@ class FontAwesome_Activator {
 	 * @internal
 	 * @throws ApiRequestException
 	 * @throws ApiResponseException
+	 * @throws ActivationException
 	 * @throws ReleaseProviderStorageException
 	 */
 	public static function initialize( $force = false ) {
-		$release_provider_option = get_option( FontAwesome_Release_Provider::OPTIONS_KEY );
+		self::initialize_release_metadata();
 
-		if ( $force || ! $release_provider_option || ! isset( $release_provider_option['data']['latest_version_6'] ) ) {
-			self::initialize_release_metadata();
+		if ( is_multisite() ) {
+			global $wp_version;
+
+			if ( version_compare( $wp_version, '5.1.0', '<' ) ) {
+				throw ActivationException::multisite_requires_at_least_5_1_0();
+			}
 		}
 
+		if ( is_multisite() && is_network_admin() ) {
+			for_each_blog(
+				function () use ( $force ) {
+					self::initialize_current_site( $force );
+				}
+			);
+		} else {
+			self::initialize_current_site( $force );
+		}
+	}
+
+	/**
+	 * Internal use only.
+	 *
+	 * @ignore
+	 * @internal
+	 */
+	public static function initialize_current_site( $force ) {
 		if ( $force || ! get_option( FontAwesome::OPTIONS_KEY ) ) {
 			self::initialize_user_options();
 		}
@@ -58,6 +83,8 @@ class FontAwesome_Activator {
 		if ( $force || ! get_option( FontAwesome::CONFLICT_DETECTION_OPTIONS_KEY ) ) {
 			self::initialize_conflict_detection_options();
 		}
+
+		self::initialize_svg_styles();
 	}
 
 	/**
@@ -69,8 +96,13 @@ class FontAwesome_Activator {
 	 * @throws ApiResponseException
 	 * @throws ReleaseProviderStorageException
 	 */
-	private static function initialize_release_metadata() {
-		FontAwesome_Release_Provider::load_releases();
+	private static function initialize_release_metadata( $force = false ) {
+		$release_provider_option = get_option( FontAwesome_Release_Provider::OPTIONS_KEY );
+
+		if ( $force || ! $release_provider_option || ! isset( $release_provider_option['data']['latest_version_6'] ) ) {
+
+			FontAwesome_Release_Provider::load_releases();
+		}
 	}
 
 	/**
@@ -94,5 +126,20 @@ class FontAwesome_Activator {
 	private static function initialize_conflict_detection_options() {
 		update_option( FontAwesome::CONFLICT_DETECTION_OPTIONS_KEY, FontAwesome::DEFAULT_CONFLICT_DETECTION_OPTIONS );
 	}
-}
 
+	/**
+	 * Internal use only.
+	 *
+	 * @ignore
+	 * @internal
+	 * @throws ReleaseMetadataMissingException
+	 * @throws ApiRequestException
+	 * @throws ApiResponseException
+	 * @throws ReleaseProviderStorageException
+	 * @throws SelfhostSetupException
+	 * @throws ConfigCorruptionException
+	 */
+	private static function initialize_svg_styles() {
+		FontAwesome_SVG_Styles_Manager::instance()->fetch_svg_styles( fa(), fa_release_provider() );
+	}
+}

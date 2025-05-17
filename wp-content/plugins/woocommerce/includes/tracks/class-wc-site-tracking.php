@@ -64,22 +64,56 @@ class WC_Site_Tracking {
 	 * Adds the tracking function to the admin footer.
 	 */
 	public static function add_tracking_function() {
-		$user           = wp_get_current_user();
-		$server_details = WC_Tracks::get_server_details();
-		$blog_details   = WC_Tracks::get_blog_details( $user->ID );
+		$user            = wp_get_current_user();
+		$server_details  = WC_Tracks::get_server_details();
+		$blog_details    = WC_Tracks::get_blog_details( $user->ID );
+		$tracks_identity = WC_Tracks_Client::get_identity( $user->ID );
+		$role_details    = WC_Tracks::get_role_details( $user );
 
-		$client_tracking_properties = array_merge( $server_details, $blog_details );
+		$client_tracking_properties = array_merge( $server_details, $blog_details, $role_details );
 		/**
 		 * Add global tracks event properties.
 		 *
 		 * @since 6.5.0
 		 */
 		$filtered_properties = apply_filters( 'woocommerce_tracks_event_properties', $client_tracking_properties, false );
+		$environment_type    = function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production';
 		?>
 		<!-- WooCommerce Tracks -->
 		<script type="text/javascript">
 			window.wcTracks = window.wcTracks || {};
 			window.wcTracks.isEnabled = <?php echo self::is_tracking_enabled() ? 'true' : 'false'; ?>;
+			window._tkq = window._tkq || [];
+
+			<?php if ( 'anon' !== $tracks_identity['_ut'] ) { ?>
+			window._tkq.push( [ 'identifyUser', '<?php echo esc_js( $tracks_identity['_ui'] ); ?>' ] );
+			<?php } ?>
+			window.wcTracks.validateEvent = function( eventName, props = {} ) {
+				let isValid = true;
+				if ( ! <?php echo esc_js( WC_Tracks_Event::EVENT_NAME_REGEX ); ?>.test( eventName ) ) {
+					if ( <?php echo $environment_type !== 'production' ? 'true' : 'false'; ?> ) {
+						/* eslint-disable no-console */
+						console.error(
+							`A valid event name must be specified. The event name: "${ eventName }" is not valid.`
+						);
+						/* eslint-enable no-console */
+					}
+					isValid = false;
+				}
+				for ( const prop of Object.keys( props ) ) {
+					if ( ! <?php echo esc_js( WC_Tracks_Event::PROP_NAME_REGEX ); ?>.test( prop ) ) {
+						if ( <?php echo $environment_type !== 'production' ? 'true' : 'false'; ?> ) {
+							/* eslint-disable no-console */
+							console.error(
+								`A valid prop name must be specified. The property name: "${ prop }" is not valid.`
+							);
+							/* eslint-enable no-console */
+						}
+						isValid = false;
+					}
+				}
+				return isValid;
+			}
 			window.wcTracks.recordEvent = function( name, properties ) {
 				if ( ! window.wcTracks.isEnabled ) {
 					return;
@@ -93,17 +127,10 @@ class WC_Site_Tracking {
 					delete( eventProperties._ui );
 					delete( eventProperties._ut );
 				}
-				// Verify the event name is correct
-				if ( ! <?php echo esc_js( WC_Tracks_Event::EVENT_NAME_REGEX ); ?>.test( eventName ) ) {
-					console.error( `A valid event name must be specified. The event name: "${ eventName }" is not valid.` );
+
+				if ( ! window.wcTracks.validateEvent( eventName, eventProperties ) ) {
+					return;
 				}
-				// Verify the properties are correct
-				for( prop in eventProperties ) {
-					if ( ! <?php echo esc_js( WC_Tracks_Event::PROP_NAME_REGEX ); ?>.test( prop ) ) {
-						console.error( `A valid prop name must be specified. The property name: "${ prop }" is not valid.` );
-					}
-				}
-				window._tkq = window._tkq || [];
 				window._tkq.push( [ 'recordEvent', eventName, eventProperties ] );
 			}
 		</script>
@@ -183,6 +210,7 @@ class WC_Site_Tracking {
 		include_once WC_ABSPATH . 'includes/tracks/events/class-wc-order-tracking.php';
 		include_once WC_ABSPATH . 'includes/tracks/events/class-wc-coupon-tracking.php';
 		include_once WC_ABSPATH . 'includes/tracks/events/class-wc-theme-tracking.php';
+		include_once WC_ABSPATH . 'includes/tracks/events/class-wc-product-collection-block-tracking.php';
 
 		$tracking_classes = array(
 			'WC_Extensions_Tracking',
@@ -195,6 +223,7 @@ class WC_Site_Tracking {
 			'WC_Order_Tracking',
 			'WC_Coupon_Tracking',
 			'WC_Theme_Tracking',
+			'WC_Product_Collection_Block_Tracking',
 		);
 
 		foreach ( $tracking_classes as $tracking_class ) {
@@ -207,5 +236,26 @@ class WC_Site_Tracking {
 		}
 	}
 
+	/**
+	 * Sets a cookie for tracking purposes, but only if tracking is enabled/allowed.
+	 *
+	 * @internal
+	 * @since 9.2.0
+	 *
+	 * @param string $cookie_key   The key of the cookie.
+	 * @param string $cookie_value The value of the cookie.
+	 * @param int    $expire       Expiry of the cookie.
+	 * @param bool   $secure       Whether the cookie should be served only over https.
+	 * @param bool   $http_only    Whether the cookie is only accessible over HTTP.
+	 *
+	 * @return bool If setting the cookie was attempted (will be false if tracking is not allowed).
+	 */
+	public static function set_tracking_cookie( string $cookie_key, string $cookie_value, int $expire = 0, bool $secure = false, bool $http_only = false ): bool {
+		if ( self::is_tracking_enabled() ) {
+			wc_setcookie( $cookie_key, $cookie_value, $expire, $secure, $http_only );
+			return true;
+		}
 
+		return false;
+	}
 }

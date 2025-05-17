@@ -12,12 +12,13 @@ defined( 'ABSPATH' ) || exit;
 /**
  * WC_Tracks_Event class.
  */
+#[AllowDynamicProperties]
 class WC_Tracks_Event {
 
 	/**
 	 * Event name regex.
 	 */
-	public const EVENT_NAME_REGEX = '/^(([a-z0-9]+)_){2}([a-z0-9_]+)$/';
+	public const EVENT_NAME_REGEX = '/^(([a-z0-9]+)_){1}([a-z0-9_]+)$/';
 
 	/**
 	 * Property name regex.
@@ -54,7 +55,7 @@ class WC_Tracks_Event {
 	 * @return bool Always returns true.
 	 */
 	public function record() {
-		if ( wp_doing_ajax() || Constants::is_true( 'REST_REQUEST' ) ) {
+		if ( wp_doing_ajax() || Constants::is_true( 'REST_REQUEST' ) || Constants::is_true( 'WP_CLI' ) || wp_doing_cron() ) {
 			return WC_Tracks_Client::record_event( $this );
 		}
 
