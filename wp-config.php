@@ -110,4 +110,4 @@ define( 'WP_MAX_MEMORY_LIMIT', '512M' );
 
 // Optional (nếu cần fix URL)
 define( 'WP_HOME', 'https://bommart.vn' );
-define( 'WP_SITEURL', 'https://bommart.vn' );
+define( 'WP_SITEURL', 'https://bommart.vn');
